@@ -6,7 +6,7 @@ package com.teksystems.salestaxexercise.runners;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.teksystems.salestaxexercise.Receipt;
+import com.teksystems.salestaxexercise.Receiptable;
 
 /**
  * Contains the static "main" function used to run and test the entire project.
@@ -21,12 +21,12 @@ import com.teksystems.salestaxexercise.Receipt;
  */
 public class SalesTaxExerciseRunner {
 	
-	private static ArrayList<Receipt> outputReceipts = new ArrayList<Receipt>(); 
+	private static ArrayList<Receiptable> outputReceipts = new ArrayList<Receiptable>(); 
 
 	/**
 	 * @return the outputReceipts
 	 */
-	public static List<Receipt> getOutputReceipts() {
+	public static List<Receiptable> getOutputReceipts() {
 		return outputReceipts;
 	}
 

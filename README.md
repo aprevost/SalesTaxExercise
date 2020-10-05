@@ -1,7 +1,32 @@
 # SalesTaxExercise
 Java coding exercise from TekSystems.
 
-The full description of the exercise can be found here. TODO: insert link
+The Word doc with the full description of the exercise can be downloaded from here: [doc/SalesTax Coding Exercise-.NET and Java.docx](doc/SalesTax Coding Exercise-.NET and Java.docx)
+
+If you just call the main() function in [com.teksystems.salestaxexercise.runners.SalesTaxExerciseRunner](src/com/teksystems/salestaxexercise/runners/SalesTaxExerciseRunner.java), it should print to the console the 3 sample outputs, namely:
+
+```
+Output 1: 
+1 book: 12.49 
+1 music CD: 16.49 
+1 chocolate bar: 0.85 
+Sales Taxes: 1.50 Total: 29.83
+
+Output 2: 
+1 imported box of chocolates: 10.50 
+1 imported bottle of perfume: 54.65 
+Sales Taxes: 7.65 Total: 65.15
+
+Output 3: 
+1 imported bottle of perfume: 32.19 
+1 bottle of perfume: 20.89 
+1 packet of headache pills: 9.75 
+1 imported box of chocolates: 11.85 
+Sales Taxes: 6.70 Total: 74.68
+```
+
+The full Javadoc can be found here (note Javadoc can't be viewed on GitHub): [doc/javadoc/index.html](doc/javadoc/index.html)
+
 
 ## Technical dependencies:
 
@@ -10,6 +35,8 @@ The full description of the exercise can be found here. TODO: insert link
 - the Eclipse project files are included in the repository. So it should be possible to create the new Eclipse project on your local machine by simply running File -> Import... -> Git -> Projects from Git.
 
 - the project files should be backwards-compatible with previous recent versions of Eclipse, but this has not been tested.
+
+- in Eclipse, to produce the output above in the Console window you should be able to just right-click on [src/com/teksystems/salestaxexercise/runners/SalesTaxExerciseRunner.java](src/com/teksystems/salestaxexercise/runners/SalesTaxExerciseRunner.java) in the Project Explorer or Package Explorer view to Run As -> Java Application
 
 2) The JDK used for implementing, testing, and running this project was JDK 14.0.2.
 
@@ -44,7 +71,7 @@ As an architect, these are things I would have asked the customer/business folks
 
 - the problem does state that the import duty is an "additional sales tax", which implies to me that it does indeed fall in to the category of a "sales tax" for the purposes of this exercise, meaning the stated "rounding rules for sales tax" would apply to this duty as well
 
-- the sample outputs provided do confirm this assumption. But as this is not explicitly stated in the requirements, it's something I'd normally confirm with the client to be 100% sure, so that the documentation could be updated to make this crystal clear.
+- the sample outputs provided do confirm this assumption as well. But as this is not explicitly stated in the requirements, it's something I'd normally confirm with the client to be 100% sure, so that the documentation could be updated to make this crystal clear.
 
 6) the rounding rule applies separately to each individual good in the basket
 

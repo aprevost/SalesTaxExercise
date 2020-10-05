@@ -7,7 +7,7 @@ package com.teksystems.salestaxexercise;
  * @author Andrew
  *
  */
-public interface Receipt {
+public interface Receiptable extends Priceable {
 	
 	public void printReceipt();
 
