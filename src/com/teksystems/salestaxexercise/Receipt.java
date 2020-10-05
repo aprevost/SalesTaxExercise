@@ -8,5 +8,7 @@ package com.teksystems.salestaxexercise;
  *
  */
 public interface Receipt {
+	
+	public void printReceipt();
 
 }

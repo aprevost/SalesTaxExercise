@@ -1,7 +1,27 @@
 package com.teksystems.salestaxexercise.tax;
 
-import com.teksystems.salestaxexercise.regions.Region;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Locale;
 
-public interface TaxJurisdiction extends Region {
+import org.joda.money.Money;
+
+/**
+ * @author Andrew
+ *
+ */
+public interface TaxJurisdiction {
+	
+	public Locale getLocale();
+	
+	public LinkedHashSet<Tax> getAllTaxes();
+	
+	public LinkedHashSet<Tax> getAllTaxesFor(Taxable price);
+	
+	public LinkedHashMap<Tax,Money> getItemizedTaxesFor(Taxable price);
+		
+	public Money getTotalTaxAmountFor(Taxable price);
+	
+	public Money getTotalPriceWithTaxFor(Taxable price);
 
 }
