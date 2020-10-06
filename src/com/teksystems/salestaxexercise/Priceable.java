@@ -13,7 +13,7 @@ import org.joda.money.Money;
  */
 public interface Priceable {
 
-	public Locale getLocale();
+	public Locale getLocaleOfSale();
 	
 	public Money getShelfPrice();
 	

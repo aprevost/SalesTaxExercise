@@ -7,7 +7,7 @@ package com.teksystems.salestaxexercise.tax;
  * @author Andrew
  *
  */
-public enum TaxedGoodCategory {
+public enum TaxableGoodCategory {
 	BOOK,
 	FOOD,
 	MEDICAL_PRODUCT,

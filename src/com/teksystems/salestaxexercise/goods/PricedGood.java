@@ -9,8 +9,8 @@ import com.teksystems.salestaxexercise.Priceable;
  * @author Andrew
  *
  */
-public interface PricedGood extends Good, Priceable {
+public interface PricedGood extends Priceable {
 	
-//TODO: implement overrides
+	public Good getGood();
 	
 }

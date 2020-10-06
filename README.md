@@ -1,9 +1,9 @@
 # SalesTaxExercise
 Java coding exercise from TekSystems.
 
-The Word doc with the full description of the exercise can be downloaded from here: [doc/SalesTax Coding Exercise-.NET and Java.docx](doc/SalesTax Coding Exercise-.NET and Java.docx)
+The Word doc with the full description of the exercise can be downloaded from here: [doc/SalesTax Coding Exercise-.NET and Java.docx](doc/SalesTax%20Coding%20Exercise-.NET%20and%20Java.docx)
 
-If you just call the main() function in [com.teksystems.salestaxexercise.runners.SalesTaxExerciseRunner](src/com/teksystems/salestaxexercise/runners/SalesTaxExerciseRunner.java), it should print to the console the 3 sample outputs, namely:
+If you just call the main() function in [com.teksystems.salestaxexercise.runners.SalesTaxExerciseRunner](src/com/teksystems/salestaxexercise/runners/SalesTaxExerciseRunner.java) with no arguments or inputs (the 3 sample inputs are hardcoded), it should print to the console the 3 sample outputs, namely:
 
 ```
 Output 1: 
@@ -42,7 +42,7 @@ The full Javadoc can be found here (note Javadoc can't be viewed on GitHub): [do
 
 - I did not knowingly make use of any recent additions to Java, so the code should be backwards compatible with any Java 8 or higher JDK, but this has not been tested.
 
-3) The project has one 3rd-party Maven dependency, Joda-Money (https://www.joda.org/joda-money/), used to avoid having to build a custom package to support multiple currencies.
+3) The project has one 3rd-party Maven dependency, [Joda-Money](https://www.joda.org/joda-money/), used to avoid having to build a custom package to support multiple currencies.
 
 4) The project depends on JUnit 5 for the unit and integration (end-to-end) tests.
 

@@ -3,20 +3,16 @@
  */
 package com.teksystems.salestaxexercise;
 
-import java.util.LinkedHashMap;
-
-import com.teksystems.salestaxexercise.goods.Good;
+import com.teksystems.salestaxexercise.goods.TaxableGood;
+import com.teksystems.salestaxexercise.tax.Taxable;
 
 /**
  * @author Andrew
  *
  */
-public interface Basket {
+public interface Basket extends Taxable {
 	
-	public void addGood(Good good);
+	public void addGood(TaxableGood good);
 	
-	public void removeGood(Good good);
-	
-	public LinkedHashMap<Good, Integer> getGoods();
-	
+	public void removeGood(TaxableGood good);
 }

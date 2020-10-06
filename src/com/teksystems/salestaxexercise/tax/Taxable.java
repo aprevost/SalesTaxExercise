@@ -3,8 +3,6 @@
  */
 package com.teksystems.salestaxexercise.tax;
 
-import java.util.LinkedHashMap;
-
 import org.joda.money.Money;
 
 import com.teksystems.salestaxexercise.Priceable;
@@ -15,9 +13,9 @@ import com.teksystems.salestaxexercise.Priceable;
  */
 public interface Taxable extends Priceable {
 		
-	public LinkedHashMap<Tax,Money> getItemizedTaxes();
-
-	public Money getTotalTaxAmount();
+	public Money getTotalTax();
+	
+	public void  setTotalTax(Money totalTax);
 	
 	public Money getTotalPriceWithTax();
 
