@@ -9,16 +9,28 @@ import java.util.Locale;
  * @author Andrew
  *
  */
-public interface Good {
+public class Good {
 	
-	/**
-	 * 
-	 */
-	public String getName();
+	private String name;
 	
-	/**
-	 * 
-	 */
-	public Locale getRegionWhereProduced();
+	public String getName() {
+		return name;
+	}
 	
+	private Locale regionWhereProduced = Locale.CANADA;
+	
+	public Locale getRegionWhereProduced() {
+		return regionWhereProduced;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+	
+	public Good(String name, Locale regionWhereProduced) {
+		this.name = name;
+		this.regionWhereProduced = regionWhereProduced;
+	}
+
 }

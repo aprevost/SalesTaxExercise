@@ -9,7 +9,7 @@ import java.util.Locale;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 
-import com.teksystems.salestaxexercise.tax.TaxableGoodCategory;
+import com.teksystems.salestaxexercise.tax.TaxableCategory;
 
 /**
  * @author Andrew
@@ -17,7 +17,7 @@ import com.teksystems.salestaxexercise.tax.TaxableGoodCategory;
  */
 public class GenericTaxableGood implements TaxableGood {
 	
-	private GenericGood good;
+	private Good good;
 	
 	@Override
 	public Good getGood() {
@@ -34,14 +34,14 @@ public class GenericTaxableGood implements TaxableGood {
 	private Money shelfPrice = Money.of(CurrencyUnit.CAD, new BigDecimal("14.99"));
 	
 	@Override
-	public Money getShelfPrice() {
+	public Money getPrice() {
 		return shelfPrice;
 	}
 
-	private TaxableGoodCategory taxCategory;
+	private TaxableCategory taxCategory;
 	
 	@Override
-	public TaxableGoodCategory getTaxableGoodCategory() {
+	public TaxableCategory getTaxableCategory() {
 		return taxCategory;
 	}
 
@@ -60,12 +60,12 @@ public class GenericTaxableGood implements TaxableGood {
 	@Override
 	public Money getTotalPriceWithTax() {
 		if (totalTax == null) {
-			return getShelfPrice();
+			return getPrice();
 		}
-		return getShelfPrice().plus(getTotalTax());
+		return getPrice().plus(getTotalTax());
 	}
 	
-	public GenericTaxableGood (GenericGood good, Locale localeOfSale, Money shelfPrice, TaxableGoodCategory taxCategory) {
+	public GenericTaxableGood (Good good, Locale localeOfSale, Money shelfPrice, TaxableCategory taxCategory) {
 		this.good = good;
 		this.localeOfSale = localeOfSale;
 		this.shelfPrice = shelfPrice;

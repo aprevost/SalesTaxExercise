@@ -9,9 +9,7 @@ import java.util.HashSet;
 
 import org.joda.money.Money;
 
-import com.teksystems.salestaxexercise.Priceable;
-import com.teksystems.salestaxexercise.goods.Good;
-import com.teksystems.salestaxexercise.goods.TaxableGood;
+import com.teksystems.salestaxexercise.helpers.MoneyRoundingRule;
 
 /**
  * @author Andrew
@@ -19,83 +17,82 @@ import com.teksystems.salestaxexercise.goods.TaxableGood;
  */
 public class CanadianSalesTax implements Tax {
 	
-	private BigDecimal percentage = new BigDecimal("0.1");
+	private BigDecimal percentageMultiplier = new BigDecimal("0.1");
 
 	/**
-	 * @return the percentage
+	 * @return the percentage of the tax (e.g. 10.5 for 10.5%, NOT 0.105)
 	 */
 	public BigDecimal getPercentage() {
-		return percentage;
+		return percentageMultiplier.multiply(new BigDecimal(10));
 	}
 	
-	private BigDecimal roundTaxToMultipleOf = new BigDecimal("0.05");
-	private RoundingMode taxRoundingMode = RoundingMode.UP;
+	private RoundingMode roundingMode = RoundingMode.UP;
 	
-	private static Money roundMoney(Money value, BigDecimal roundToMultipleOf, RoundingMode roundingMode) {
-		if (roundToMultipleOf == null || roundToMultipleOf.signum() == 0) {
-			// Don't allow division by 0
-			return value;
+	public RoundingMode getRoundingMode() {
+		return roundingMode;
+	}
+	
+	private MoneyRoundingRule customRoundingRule = new MoneyRoundingRule(new BigDecimal("0.05"), roundingMode);
+	
+	public MoneyRoundingRule getCustomRoundingRule() {
+		return customRoundingRule;
+	}
+		
+	private Money calculateSalesTax(Money preTaxPrice) {
+		//First do the simple tax percentage multiplication, with default rounding mode
+		Money unroundedTaxAmount = preTaxPrice.multipliedBy(percentageMultiplier, getRoundingMode());
+		
+		//Now check if there's a custom rounding rule that also needs to be applied
+		MoneyRoundingRule customRoundingRule = getCustomRoundingRule();
+		if (customRoundingRule == null) {
+			return unroundedTaxAmount;
 		}
-		else {
-			//Convert the amount of money to a BigDecimal
-			BigDecimal amount = value.getAmount();
-			//First divide the amount by the unit we are rounding to
-			//With scale set to 0 (meaning 0 decimal places, result must be a whole number)
-			//And with the specified rounding mode
-			BigDecimal divided = amount.divide(roundToMultipleOf, 0, roundingMode);
-			
-			//Now multiply again by the unit we are rounding to, 
-			return value.withAmount(divided.multiply(roundToMultipleOf));
-		}
+		return customRoundingRule.round(unroundedTaxAmount);
 	}
 	
-	private Money calculateSalesTax(Money shelfPrice) {
-		Money unroundedTaxAmount = shelfPrice.multipliedBy(getPercentage(), taxRoundingMode);
-		//Now round the tax using the specified rules
-		return roundMoney(unroundedTaxAmount, roundTaxToMultipleOf, taxRoundingMode);
-	}
+	private HashSet<TaxableCategory> exemptedCategories = new HashSet<TaxableCategory>();
 	
-	private HashSet<TaxableGoodCategory> exemptedCategories = new HashSet<TaxableGoodCategory>();
+	public HashSet<TaxableCategory> getExemptedCategories() {
+		return exemptedCategories;
+	}
 
 	@Override
-	public Money getTaxAmountFor(Taxable price) {
+	public Money getTaxAmountFor(Taxable taxable) {
 		
-		if (price == null) {
+		if (taxable == null) {
 			return null;
 		}
 		
-		Money shelfPrice = price.getShelfPrice();
-		if (shelfPrice == null) {
+		Money preTaxPrice = taxable.getPrice();
+		if (preTaxPrice == null) {
 			return null;
 		}
 		
-		//Use shelfPrice.withAmount so that currency of the shelf price is maintained
+		//Use preTaxPrice.withAmount rather than just creating a new Money
+		//object form scratch so that currency of the pre-tax price is maintained
 		//for the tax amount of 0 as well
-		Money zeroTax = shelfPrice.withAmount(BigDecimal.ZERO);
+		Money zeroTax = preTaxPrice.withAmount(BigDecimal.ZERO);
 		
-		if (shelfPrice.isZero()) {
+		if (preTaxPrice.isZero()) {
 			return zeroTax;
 		}
 		
-		Money taxAmount = calculateSalesTax(shelfPrice);
+		Money taxAmount = calculateSalesTax(preTaxPrice);
 		
-		if (!(price instanceof TaxableGood)) {
-			return taxAmount;
-		}
-		
-		TaxableGood taxedGood = (TaxableGood) price;
-		TaxableGoodCategory category = taxedGood.getTaxableGoodCategory();
-		if (category == null || !exemptedCategories.contains(category)) {
+		TaxableCategory category = taxable.getTaxableCategory();
+		if (category == null || !getExemptedCategories().contains(category)) {
 			return taxAmount;
 		}
 		return zeroTax;
 		
 	}
 	
-	public CanadianSalesTax() {
-		exemptedCategories.add(TaxableGoodCategory.BOOK);
-		exemptedCategories.add(TaxableGoodCategory.FOOD);
-		exemptedCategories.add(TaxableGoodCategory.MEDICAL_PRODUCT);
+	public CanadianSalesTax(BigDecimal percentage) {
+		//Multiply by 0.01 here, rather than dividing by 100, so that scale of multiplier is maintained correctly
+		this.percentageMultiplier = percentage.multiply(new BigDecimal("0.01"));
+		exemptedCategories.add(TaxableCategory.BOOK);
+		exemptedCategories.add(TaxableCategory.FOOD);
+		exemptedCategories.add(TaxableCategory.MEDICAL_PRODUCT);
 	}
 
 }

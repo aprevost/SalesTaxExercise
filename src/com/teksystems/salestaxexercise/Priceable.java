@@ -15,6 +15,6 @@ public interface Priceable {
 
 	public Locale getLocaleOfSale();
 	
-	public Money getShelfPrice();
+	public Money getPrice();
 	
 }

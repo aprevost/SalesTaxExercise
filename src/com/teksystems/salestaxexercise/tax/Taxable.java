@@ -13,6 +13,8 @@ import com.teksystems.salestaxexercise.Priceable;
  */
 public interface Taxable extends Priceable {
 		
+	public TaxableCategory getTaxableCategory();
+	
 	public Money getTotalTax();
 	
 	public void  setTotalTax(Money totalTax);
