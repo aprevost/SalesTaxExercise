@@ -3,13 +3,14 @@
  */
 package com.teksystems.salestaxexercise.goods;
 
-import java.util.Locale;
+import com.ibm.icu.util.Region;
+import com.teksystems.salestaxexercise.TraceableItem;
 
 /**
  * @author Andrew
  *
  */
-public class Good {
+public class Good implements TraceableItem {
 	
 	private String name;
 	
@@ -17,10 +18,10 @@ public class Good {
 		return name;
 	}
 	
-	private Locale regionWhereProduced = Locale.CANADA;
+	private Region regionOfOrigin;
 	
-	public Locale getRegionWhereProduced() {
-		return regionWhereProduced;
+	public Region getRegionOfOrigin() {
+		return regionOfOrigin;
 	}
 	
 	@Override
@@ -28,9 +29,9 @@ public class Good {
 		return name;
 	}
 	
-	public Good(String name, Locale regionWhereProduced) {
+	public Good(String name, Region regionWhereProduced) {
 		this.name = name;
-		this.regionWhereProduced = regionWhereProduced;
+		this.regionOfOrigin = regionWhereProduced;
 	}
 
 }

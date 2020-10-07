@@ -1,7 +1,7 @@
 # SalesTaxExercise
-Java coding exercise from TekSystems.
+My solution to a Java coding exercise from TekSystems.
 
-The Word doc with the full description of the exercise can be downloaded from here: [doc/SalesTax Coding Exercise-.NET and Java.docx](doc/SalesTax%20Coding%20Exercise-.NET%20and%20Java.docx)
+The Word doc with the full description of the exercise can be downloaded here: [doc/SalesTax Coding Exercise-.NET and Java.docx](doc/SalesTax%20Coding%20Exercise-.NET%20and%20Java.docx)
 
 If you just call the main() function in [com.teksystems.salestaxexercise.runners.SalesTaxExerciseRunner](src/com/teksystems/salestaxexercise/runners/SalesTaxExerciseRunner.java) with no arguments or inputs (the 3 sample inputs are hardcoded), it should print to the console the 3 sample outputs, namely:
 
@@ -42,7 +42,11 @@ The full Javadoc can be found here (note Javadoc can't be viewed on GitHub): [do
 
 - I did not knowingly make use of any recent additions to Java, so the code should be backwards compatible with any Java 8 or higher JDK, but this has not been tested.
 
-3) The project has one 3rd-party Maven dependency, [Joda-Money](https://www.joda.org/joda-money/), used to avoid having to build a custom package to support multiple currencies.
+3) The project has two 3rd-party Maven dependencies:
+
+- [Joda-Money](https://www.joda.org/joda-money/), used to avoid having to build a custom package to support multiple currencies
+
+- [icu4j](https://unicode-org.github.io/icu-docs/apidoc/released/icu4j/), used to avoid having to build region-handling logic from scratch
 
 4) The project depends on JUnit 5 for the unit and integration (end-to-end) tests.
 
@@ -53,9 +57,9 @@ As an architect, these are things I would have asked the customer/business folks
 
 1) this is code that will live for a long time, as part of a system that is expected to grow and evolve.
 
-- there is such a thing as over-engineering. Much of this design would be overkill (in particular the parts of the design that anticipate the possibility of internationalization in the future) and not necessary for the purposes of a throw-away demo or prototype.
+- there is such a thing as over-engineering and over-documenting. Much of this design would be overkill (in particular the parts of the design that anticipate the possibility of internationalization in the future) if this was a throw-away demo or prototype.
 
-2) the business side owners/users of this system most commonly use the word "goods" to describe the products they sell, in general.
+2) the business side owners/users of this system most commonly use the word "good" to describe the products they sell, in general.
 
 - I would generally prefer to use a more generic word that doesn't have a double meaning, like "product", to refer to this concept in the code. But I aped the language used in the problem description instead.
 
@@ -65,7 +69,7 @@ As an architect, these are things I would have asked the customer/business folks
 
 3) the only country in which goods are currently being purchased is (a fictional version of) Canada
 
-4) we are allowed to assume that any good whose country of origin is not available/not specified was produced in Canada (i.e, it is not subject to the import tax)
+4) we are allowed to assume that if the country of origin is not available/not specified in whatever data source we're using to retrieve our list of goods and prices for a given region, that means that good is not subject to any import taxes in that region
 
 5) the rounding rule for sales taxes applies to the import duty as well
 
@@ -93,8 +97,15 @@ As an architect, these are things I would have asked the customer/business folks
 
 
 
-## Technical next steps
+## Technical next steps/known design problems
 
 Things I haven't done yet, but would have gotten around to if my time to complete this exercise was unlimited:
 
-1)
+1) using toString() on all of my classes to generate the receipt output is obviously not the right design for the long term.
+
+- in anticipation of the need to support multiple languages, I would implement a more generic View design based on ResourceBundles
+
+
+
+
+

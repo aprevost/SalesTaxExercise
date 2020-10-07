@@ -9,7 +9,7 @@ import com.teksystems.salestaxexercise.Priceable;
  * @author Andrew
  *
  */
-public interface PricedGood extends Priceable {
+public interface PriceableGood extends Priceable {
 	
 	public Good getGood();
 	

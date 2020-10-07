@@ -9,13 +9,22 @@ import java.util.HashSet;
 
 import org.joda.money.Money;
 
+import com.ibm.icu.util.Region;
 import com.teksystems.salestaxexercise.helpers.MoneyRoundingRule;
+import com.teksystems.salestaxexercise.helpers.RegionHelper;
 
 /**
  * @author Andrew
  *
  */
 public class CanadianSalesTax implements Tax {
+	
+	private Region region;
+	
+	@Override
+	public Region getRegion() {
+		return region;
+	}
 	
 	private BigDecimal percentageMultiplier = new BigDecimal("0.1");
 
@@ -38,7 +47,7 @@ public class CanadianSalesTax implements Tax {
 		return customRoundingRule;
 	}
 		
-	private Money calculateSalesTax(Money preTaxPrice) {
+	protected Money calculateSalesTax(Money preTaxPrice) {
 		//First do the simple tax percentage multiplication, with default rounding mode
 		Money unroundedTaxAmount = preTaxPrice.multipliedBy(percentageMultiplier, getRoundingMode());
 		
@@ -57,13 +66,13 @@ public class CanadianSalesTax implements Tax {
 	}
 
 	@Override
-	public Money getTaxAmountFor(Taxable taxable) {
+	public Money getTaxAmountFor(TaxableItem taxableItem) {
 		
-		if (taxable == null) {
+		if (taxableItem == null) {
 			return null;
 		}
 		
-		Money preTaxPrice = taxable.getPrice();
+		Money preTaxPrice = taxableItem.getPrice();
 		if (preTaxPrice == null) {
 			return null;
 		}
@@ -79,20 +88,22 @@ public class CanadianSalesTax implements Tax {
 		
 		Money taxAmount = calculateSalesTax(preTaxPrice);
 		
-		TaxableCategory category = taxable.getTaxableCategory();
+		TaxableCategory category = taxableItem.getTaxableCategory();
 		if (category == null || !getExemptedCategories().contains(category)) {
 			return taxAmount;
 		}
-		return zeroTax;
 		
+		return zeroTax;
 	}
 	
 	public CanadianSalesTax(BigDecimal percentage) {
+		this.region = RegionHelper.CANADA;
 		//Multiply by 0.01 here, rather than dividing by 100, so that scale of multiplier is maintained correctly
 		this.percentageMultiplier = percentage.multiply(new BigDecimal("0.01"));
 		exemptedCategories.add(TaxableCategory.BOOK);
 		exemptedCategories.add(TaxableCategory.FOOD);
 		exemptedCategories.add(TaxableCategory.MEDICAL_PRODUCT);
 	}
+
 
 }

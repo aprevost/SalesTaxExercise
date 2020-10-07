@@ -2,7 +2,8 @@ package com.teksystems.salestaxexercise.tax;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.Locale;
+
+import com.ibm.icu.util.Region;
 
 import org.joda.money.Money;
 
@@ -12,7 +13,7 @@ import org.joda.money.Money;
  */
 public interface TaxJurisdiction {
 	
-	public Locale getLocale();
+	public Region getRegion();
 	
 	public LinkedHashSet<Tax> getAllTaxes();
 	
