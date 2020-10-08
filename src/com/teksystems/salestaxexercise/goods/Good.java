@@ -4,13 +4,12 @@
 package com.teksystems.salestaxexercise.goods;
 
 import com.ibm.icu.util.Region;
-import com.teksystems.salestaxexercise.TraceableItem;
 
 /**
  * @author Andrew
  *
  */
-public class Good implements TraceableItem {
+public class Good {
 	
 	private String name;
 	

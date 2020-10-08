@@ -5,7 +5,7 @@ package com.teksystems.salestaxexercise.tax;
 
 import org.joda.money.Money;
 
-import com.ibm.icu.util.Region;
+import com.teksystems.salestaxexercise.SellableItem;
 
 /**
  * @author Andrew
@@ -13,8 +13,10 @@ import com.ibm.icu.util.Region;
  */
 public interface Tax {
 	
-	public Region getRegion();
+	public String getName();
+	
+	public TaxJurisdiction getTaxJurisdiction();
 
-	public Money getTaxAmountFor(TaxableItem taxableItem);
+	public Money getTaxAmountFor(SellableItem taxableItem);
 
 }

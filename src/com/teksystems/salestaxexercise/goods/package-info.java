@@ -1,5 +1,7 @@
 /**
- * Contains all interfaces and classes related to goods and collections of goods
+ * A good is the simplest type of sellable item.
+ * 
+ * This package contains classes for goods that implement the {@link com.teksystems.salestaxexercise.SellableItem} interface.
  * 
  * @author Andrew
  */

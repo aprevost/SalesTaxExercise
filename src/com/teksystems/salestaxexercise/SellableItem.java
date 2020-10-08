@@ -9,7 +9,9 @@ import com.ibm.icu.util.Region;
  * @author Andrew
  *
  */
-public interface TraceableItem {
+public interface SellableItem extends Sellable {
+	
+	public String getName();
 	
 	public Region getRegionOfOrigin();
 	

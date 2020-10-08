@@ -11,21 +11,21 @@ import java.util.Collection;
  * @author Andrew
  *
  */
-public interface Basket extends Priceable {
+public interface Basket extends Sellable {
 	
 	/**
 	 * Add an item to the basket
 	 * 
 	 * @param item the priced item to add
 	 */
-	public void add(Priceable item);
+	public void add(Sellable item);
 	
 	/**
 	 * Remove an item from the basket
 	 * 
 	 * @param item the priced item to remove
 	 */
-	public void remove(Priceable item);
+	public void remove(Sellable item);
 	
 	
 	/**
@@ -33,6 +33,6 @@ public interface Basket extends Priceable {
 	 * 
 	 * @return a collection priced items
 	 */
-	public Collection<Priceable> getAllItems();
+	public Collection<Sellable> getAllItems();
 
 }

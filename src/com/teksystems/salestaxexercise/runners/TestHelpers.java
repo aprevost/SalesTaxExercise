@@ -9,86 +9,78 @@ import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 
 import com.teksystems.salestaxexercise.goods.Good;
-import com.teksystems.salestaxexercise.goods.TaxableGood;
+import com.teksystems.salestaxexercise.goods.PricedGood;
 import com.teksystems.salestaxexercise.helpers.RegionHelper;
-import com.teksystems.salestaxexercise.tax.CanadianImportTax;
-import com.teksystems.salestaxexercise.tax.CanadianSalesTax;
-import com.teksystems.salestaxexercise.tax.TaxableCategory;
 
 /**
  * Constructs the objects needed to run the test exercise
  * 
  * Also used in other unit tests throughout the module
  * 
+ * In a real system these objects would all be built dynamically based on
+ * data retrieved from a data source
+ * 
  * @author Andrew
  *
  */
 public class TestHelpers {
-	public static final CanadianSalesTax SALES_TAX_CANADIAN = new CanadianSalesTax(new BigDecimal(10));
-	public static final CanadianSalesTax IMPORT_TAX_CANADIAN = new CanadianImportTax(new BigDecimal(5));
 	
-	
-	public static final TaxableGood BOOK_CANADIAN = new TaxableGood(
-			new Good("book", RegionHelper.CANADA),
+	//Basic Good objects corresponding to the goods used in this exercise
+	public static final Good CANADIAN_BOOK = new Good("book", RegionHelper.CANADA);
+	public static final Good CANADIAN_MUSIC_CD = new Good("music CD", RegionHelper.CANADA);
+	public static final Good CANADIAN_CHOCOLATE_BAR = new Good("chocolate bar", RegionHelper.CANADA);	
+	public static final Good AMERICAN_BOX_OF_CHOCOLATES = new Good("box of chocolates", RegionHelper.USA);
+	public static final Good FRENCH_BOTTLE_OF_PERFUME = new Good("bottle of perfume", RegionHelper.FRANCE);
+	public static final Good AMERICAN_BOTTLE_OF_PERFUME = new Good("bottle of perfume", RegionHelper.USA);
+	public static final Good CANADIAN_BOTTLE_OF_PERFUME = new Good("bottle of perfume", RegionHelper.CANADA);
+	public static final Good CANADIAN_PACKET_OF_HEADACHE_PILLS = new Good("packet of headache pills", RegionHelper.CANADA);
+	public static final Good FRENCH_BOX_OF_CHOCOLATES = new Good("box of chocolates", RegionHelper.FRANCE);
+
+	//The prices for those goods, when sold in Canada
+	public static final PricedGood CANADIAN_BOOK_PRICE = new PricedGood(
+			CANADIAN_BOOK,
 			RegionHelper.CANADA,
-			Money.of(CurrencyUnit.CAD, new BigDecimal("12.49")),
-			TaxableCategory.BOOK
+			Money.of(CurrencyUnit.CAD, new BigDecimal("12.49"))
 	);
-	
-	public static final TaxableGood MUSIC_CD_CANADIAN = new TaxableGood(
-			new Good("music CD", RegionHelper.CANADA),
+	public static final PricedGood CANADIAN_MUSIC_CD_PRICE = new PricedGood(
+			CANADIAN_MUSIC_CD,
 			RegionHelper.CANADA,
-			Money.of(CurrencyUnit.CAD, new BigDecimal("14.99")),
-			TaxableCategory.OTHER
+			Money.of(CurrencyUnit.CAD, new BigDecimal("14.99"))
 	);
-	
-	public static final TaxableGood CHOCOLATE_BAR_CANADIAN = new TaxableGood(
-			new Good("chocolate bar", RegionHelper.CANADA),
+	public static final PricedGood CANADIAN_CHOCOLATE_BAR_PRICE = new PricedGood(
+			CANADIAN_CHOCOLATE_BAR,
 			RegionHelper.CANADA,
-			Money.of(CurrencyUnit.CAD, new BigDecimal("0.85")),
-			TaxableCategory.FOOD
+			Money.of(CurrencyUnit.CAD, new BigDecimal("0.85"))
 	);
-	
-	public static final TaxableGood BOX_OF_CHOCOLATES_AMERICAN = new TaxableGood(
-			new Good("box of chocolates", RegionHelper.USA),
+	public static final PricedGood AMERICAN_BOX_OF_CHOCOLATES_PRICE = new PricedGood(
+			AMERICAN_BOX_OF_CHOCOLATES,
 			RegionHelper.CANADA,
-			Money.of(CurrencyUnit.CAD, new BigDecimal("10.00")),
-			TaxableCategory.FOOD
+			Money.of(CurrencyUnit.CAD, new BigDecimal("10.00"))
 	);
-	
-	public static final TaxableGood BOTTLE_OF_PERFUME_FRENCH = new TaxableGood(
-			new Good("bottle of perfume", RegionHelper.FRANCE),
+	public static final PricedGood FRENCH_BOTTLE_OF_PERFUME_PRICE = new PricedGood(
+			FRENCH_BOTTLE_OF_PERFUME,
 			RegionHelper.CANADA,
-			Money.of(CurrencyUnit.CAD, new BigDecimal("47.50")),
-			TaxableCategory.OTHER
+			Money.of(CurrencyUnit.CAD, new BigDecimal("47.50"))
 	);
-	
-	public static final TaxableGood BOTTLE_OF_PERFUME_AMERICAN = new TaxableGood(
-			new Good("bottle of perfume", RegionHelper.USA),
+	public static final PricedGood AMERICAN_BOTTLE_OF_PERFUME_PRICE = new PricedGood(
+			AMERICAN_BOTTLE_OF_PERFUME,
 			RegionHelper.CANADA,
-			Money.of(CurrencyUnit.CAD, new BigDecimal("27.99")),
-			TaxableCategory.OTHER
+			Money.of(CurrencyUnit.CAD, new BigDecimal("27.99"))
 	);
-	
-	public static final TaxableGood BOTTLE_OF_PERFUME_CANADIAN = new TaxableGood(
-			new Good("bottle of perfume", RegionHelper.CANADA),
+	public static final PricedGood CANADIAN_BOTTLE_OF_PERFUME_PRICE = new PricedGood(
+			CANADIAN_BOTTLE_OF_PERFUME,
 			RegionHelper.CANADA,
-			Money.of(CurrencyUnit.CAD, new BigDecimal("18.99")),
-			TaxableCategory.OTHER
+			Money.of(CurrencyUnit.CAD, new BigDecimal("18.99"))
 	);
-	
-	public static final TaxableGood PACKET_OF_HEADACHE_PILLS_CANADIAN = new TaxableGood(
-			new Good("packet of headache pills", RegionHelper.CANADA),
+	public static final PricedGood CANADIAN_PACKET_OF_HEADACHE_PILLS_PRICE = new PricedGood(
+			CANADIAN_PACKET_OF_HEADACHE_PILLS,
 			RegionHelper.CANADA,
-			Money.of(CurrencyUnit.CAD, new BigDecimal("9.75")),
-			TaxableCategory.MEDICAL_PRODUCT
+			Money.of(CurrencyUnit.CAD, new BigDecimal("9.75"))
 	);
-	
-	public static final TaxableGood BOX_OF_CHOCOLATES_FRENCH = new TaxableGood(
-			new Good("box of chocolates", RegionHelper.FRANCE),
+	public static final PricedGood FRENCH_BOX_OF_CHOCOLATES_PRICE = new PricedGood(
+			FRENCH_BOX_OF_CHOCOLATES,
 			RegionHelper.CANADA,
-			Money.of(CurrencyUnit.CAD, new BigDecimal("11.25")),
-			TaxableCategory.FOOD
+			Money.of(CurrencyUnit.CAD, new BigDecimal("11.25"))
 	);
 
 }

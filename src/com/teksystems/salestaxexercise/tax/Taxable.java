@@ -7,18 +7,19 @@ import java.util.Map;
 
 import org.joda.money.Money;
 
-import com.teksystems.salestaxexercise.Priceable;
-
 /**
  * Defines the interface for any object that has taxes associated with it
  * 
  * Not just individual items or goods that are taxable, but also collections
- * of taxable good
+ * of taxable goods
  * 
  * @author Andrew
  *
  */
-public interface Taxable extends Priceable {
+public interface Taxable {
+	
+	//TODO: this may not be necessary here
+	public TaxJurisdiction getTaxJurisdiction();
 		
 	public Map<Tax,Money> getTaxAmounts();
 	
