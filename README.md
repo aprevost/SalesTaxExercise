@@ -168,6 +168,11 @@ the long term
 - taxable categories really should be an interface with a different implementation/different possible values for each tax jurisdiction
 
 
+7) in order to debug issues after deployment, logging is often key
+
+- log4j should be added to the project, along with some basic trace logging at the DEBUG/INFO levels
+
+
 
 
 
