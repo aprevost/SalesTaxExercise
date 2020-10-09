@@ -28,18 +28,6 @@ import com.teksystems.salestaxexercise.tax.TaxableCategory;
  */
 public class CanadianTaxJurisdiction extends AbstractTaxJurisdiction {
 	
-	private static CanadianTaxJurisdiction instance = new CanadianTaxJurisdiction();
-	
-	public static CanadianTaxJurisdiction getInstance() {
-		return instance;
-	}
-	
-	private CanadianTaxJurisdiction() {
-		super(RegionHelper.CANADA);
-		addTax(SALES_TAX);
-		addTax(IMPORT_DUTY);
-	}
-
 	/**
 	 * Canadian taxes are always rounded up
 	 */
@@ -50,42 +38,72 @@ public class CanadianTaxJurisdiction extends AbstractTaxJurisdiction {
 	 */
 	public static final MoneyRoundingRule ROUNDING_RULE = new MoneyRoundingRule(
 			new BigDecimal("0.05"),
-			ROUNDING_MODE
+			CanadianTaxJurisdiction.ROUNDING_MODE
 	);
 	
-	/**
-	 * Canada has a 10% sales tax, with 3 exempted categories
-	 */
-	public static final SalesTax SALES_TAX = new SalesTax(
-			CanadianTaxJurisdiction.getInstance(),
-			"Sales Tax",
-			new BigDecimal("10"),
-			new HashSet<TaxableCategory>(Arrays.asList(
-					TaxableCategory.BOOK,
-					TaxableCategory.FOOD,
-					TaxableCategory.MEDICAL_PRODUCT
-			)),
-			CanadianTaxJurisdiction.ROUNDING_MODE,
-			CanadianTaxJurisdiction.ROUNDING_RULE
-	);
+	//Make sure the call to the constructor occurs below the constant
+	//declarations above, because those constants are used in the constructor
+	private static CanadianTaxJurisdiction instance = new CanadianTaxJurisdiction();
+	
+	public static CanadianTaxJurisdiction getInstance() {
+		return instance;
+	}
+	
+	private CanadianTaxJurisdiction() {
+		super(RegionHelper.CANADA);
+		
+		//Canada has a 5% import duty on imported goods, with no exemptions,
+		//applied as a sales tax
+		importSalesTax = new ImportSalesTax(
+				this,
+				"Import Duty",
+				new BigDecimal("5"),
+				null,
+				CanadianTaxJurisdiction.ROUNDING_MODE,
+				CanadianTaxJurisdiction.ROUNDING_RULE
+		);
+		addTax(importSalesTax);
+		//Canada has a 10% sales tax, with 3 exempted categories
+		salesTax = new SalesTax(
+				this,
+				"Sales Tax",
+				new BigDecimal("10"),
+				new HashSet<TaxableCategory>(Arrays.asList(
+						TaxableCategory.BOOK,
+						TaxableCategory.FOOD,
+						TaxableCategory.MEDICAL_PRODUCT
+				)),
+				CanadianTaxJurisdiction.ROUNDING_MODE,
+				CanadianTaxJurisdiction.ROUNDING_RULE
+		);
+		addTax(salesTax);
+	}
 
+	private SalesTax salesTax;
 	/**
-	 * Canada has a 5% import duty on imported goods, with no exemptions,
-	 * applied as a sales tax
+	 * Getter here exclusively so this tax object can be used for unit testing
+	 * 
+	 * @return the Canadian sales tax
 	 */
-	public static final ImportSalesTax IMPORT_DUTY = new ImportSalesTax(
-			CanadianTaxJurisdiction.getInstance(),
-			"Import Duty",
-			new BigDecimal("5"),
-			null,
-			CanadianTaxJurisdiction.ROUNDING_MODE,
-			CanadianTaxJurisdiction.ROUNDING_RULE
-	);
+	public SalesTax getSalesTax() {
+		return salesTax;
+	}
 
+	private ImportSalesTax importSalesTax;
+	/**
+	 * Getter here exclusively so this tax object can be used for unit testing
+	 * 
+	 * @return the Canadian import duty
+	 */
+	public ImportSalesTax getImportSalesTax() {
+		return importSalesTax;
+	}
 
 	@Override
 	public TaxableCategory getTaxableCategoryFor(SellableItem sellableItem) {
 		//This is a complete hack for the purposes of this exercise
+		//In the real world the taxable category mappings would be retrieved
+		//from a data source
 		switch (sellableItem.getName()) {
 			case "book":
 				return TaxableCategory.BOOK;

@@ -12,6 +12,7 @@ import org.joda.money.Money;
 import com.ibm.icu.util.Region;
 import com.teksystems.salestaxexercise.SellableItem;
 import com.teksystems.salestaxexercise.helpers.MoneyRoundingRule;
+import com.teksystems.salestaxexercise.helpers.RegionHelper;
 
 /**
  * Generic class for implementing an import duty that is assessed like a sales tax
@@ -57,25 +58,8 @@ public class ImportSalesTax extends SalesTax {
 		// - if no origin can be retrieved for item, or if the origin retrieved
 		//   is empty, we assume this item is not subject to an import tax
 		
-		//The .contains check below requires and understanding of how the
-		//Region class works (the Region class was chosen for this purpose
-		//precisely because of this feature)
-		// - if this item was produced in Quebec, and this sales tax is a Canadian
-		//     national tax, the itemRegionOfOrigin (Quebec) does not equal the 
-		//     tax region (Canada), so the equals check will return false
-		//  - however, the contains check "Returns true if this region contains
-		//    the supplied other region anywhere in the region hierarchy."
-		//    (as per the Javadoc)
-		//  - since Quebec is a subregion of Canada, Quebec is in the region
-		//    hierarchy of Canada, so the contains check will return true,
-		//    this is not an import
-		//  - NOTE: the Region class does not support sub-regions within
-		//    countries, like provinces, off the shelf, would have to be
-		//    extended
-		//TODO: long-term this logic would have to be a lot more sophisticated
 		if (itemRegionOfOrigin == null
-				|| taxRegion.equals(itemRegionOfOrigin)
-				|| taxRegion.contains(itemRegionOfOrigin)
+				|| RegionHelper.regionIsOrContainsRegion(taxRegion, itemRegionOfOrigin)
 		) {
 			//The item is not subject to the import tax
 			return zeroTax;

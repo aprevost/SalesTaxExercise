@@ -3,7 +3,7 @@
  */
 package com.teksystems.salestaxexercise.tax;
 
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 import org.joda.money.Money;
 
@@ -18,10 +18,7 @@ import org.joda.money.Money;
  */
 public interface Taxable {
 	
-	//TODO: this may not be necessary here
-	public TaxJurisdiction getTaxJurisdiction();
-		
-	public Map<Tax,Money> getTaxAmounts();
+	public LinkedHashMap<Tax,Money> getTaxAmounts();
 	
 	public Money getTotalTax();
 		

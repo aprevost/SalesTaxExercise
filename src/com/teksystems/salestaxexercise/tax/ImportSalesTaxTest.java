@@ -24,6 +24,8 @@ class ImportSalesTaxTest {
 
 	private SellableItem sellableItem;
 
+	private ImportSalesTax importSalesTax = CanadianTaxJurisdiction.getInstance().getImportSalesTax();
+
 	private Money taxAmount;
 	
 	/**
@@ -34,10 +36,10 @@ class ImportSalesTaxTest {
 	@Test
 	void testGetTaxAmountForExemptDomesticGood() {
 		sellableItem = TestHelpers.CANADIAN_BOOK_PRICE;
-		taxAmount = CanadianTaxJurisdiction.IMPORT_DUTY.getTaxAmountFor(sellableItem);
-		assertNotNull(taxAmount, "tax amount is null");
-		assertTrue(taxAmount.getCurrencyUnit().equals(CurrencyUnit.CAD), "currency unit should be CAD, but is " + taxAmount.getCurrencyUnit());
-		assertTrue(taxAmount.isZero(), "taxAmount should be 0, but is " + taxAmount.getAmount());
+		taxAmount = importSalesTax.getTaxAmountFor(sellableItem);
+		assertNotNull(taxAmount, "tax amount");
+		assertEquals(taxAmount.getCurrencyUnit(), CurrencyUnit.CAD, "currency unit");
+		assertTrue(taxAmount.isZero(), "taxAmount.isZero");
 	}
 	
 	/**
@@ -48,10 +50,10 @@ class ImportSalesTaxTest {
 	@Test
 	void testGetTaxAmountForImportedGood() {
 		sellableItem = TestHelpers.AMERICAN_BOX_OF_CHOCOLATES_PRICE;
-		taxAmount = CanadianTaxJurisdiction.IMPORT_DUTY.getTaxAmountFor(sellableItem);
-		assertNotNull(taxAmount, "tax amount is null");
-		assertTrue(taxAmount.getCurrencyUnit().equals(CurrencyUnit.CAD), "currency unit should be CAD, but is " + taxAmount.getCurrencyUnit());
-		assertTrue(taxAmount.getAmount().equals(new BigDecimal("0.50")), "taxAmount should be 0.50, but is " + taxAmount.getAmount());
+		taxAmount = importSalesTax.getTaxAmountFor(sellableItem);
+		assertNotNull(taxAmount, "tax amount");
+		assertEquals(taxAmount.getCurrencyUnit(), CurrencyUnit.CAD, "currency unit");
+		assertEquals(taxAmount.getAmount(), new BigDecimal("0.50"), "taxAmount");
 	}
 
 }

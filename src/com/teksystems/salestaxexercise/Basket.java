@@ -3,7 +3,7 @@
  */
 package com.teksystems.salestaxexercise;
 
-import java.util.Collection;
+import java.util.LinkedHashMap;
 
 /**
  * Basic interface for a collection of items with prices attached to them
@@ -18,21 +18,22 @@ public interface Basket extends Sellable {
 	 * 
 	 * @param item the priced item to add
 	 */
-	public void add(Sellable item);
+	public void add(SellableItem sellableItem);
 	
 	/**
 	 * Remove an item from the basket
 	 * 
 	 * @param item the priced item to remove
 	 */
-	public void remove(Sellable item);
+	public void remove(SellableItem sellableItem);
 	
 	
 	/**
-	 * Get a collection of all the priced items in the basket
+	 * Get an ordered map of all the items in the basket, with a count
+	 * for each item
 	 * 
 	 * @return a collection priced items
 	 */
-	public Collection<Sellable> getAllItems();
+	public LinkedHashMap<SellableItem,Integer> getAllItemsWithCount();
 
 }

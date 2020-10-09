@@ -23,6 +23,8 @@ import com.teksystems.salestaxexercise.tax.canada.CanadianTaxJurisdiction;
 class SalesTaxTest {
 		
 	private SellableItem sellableItem;
+	
+	private SalesTax salesTax = CanadianTaxJurisdiction.getInstance().getSalesTax();
 
 	private Money taxAmount;
 	
@@ -34,10 +36,10 @@ class SalesTaxTest {
 	@Test
 	void testGetTaxAmountForExemptBook() {
 		sellableItem = TestHelpers.CANADIAN_BOOK_PRICE;
-		taxAmount = CanadianTaxJurisdiction.SALES_TAX.getTaxAmountFor(sellableItem);
-		assertNotNull(taxAmount, "tax amount is null");
-		assertTrue(taxAmount.getCurrencyUnit().equals(CurrencyUnit.CAD), "currency unit is " + taxAmount.getCurrencyUnit());
-		assertTrue(taxAmount.isZero(), "taxAmount is " + taxAmount.getAmount());
+		taxAmount = salesTax.getTaxAmountFor(sellableItem);
+		assertNotNull(taxAmount, "tax amount");
+		assertEquals(taxAmount.getCurrencyUnit(), CurrencyUnit.CAD, "currency unit");
+		assertTrue(taxAmount.isZero(), "taxAmount.isZero");
 	}
 	
 	/**
@@ -48,10 +50,10 @@ class SalesTaxTest {
 	@Test
 	void testGetTaxAmountForNonExemptGood() {
 		sellableItem = TestHelpers.CANADIAN_MUSIC_CD_PRICE;
-		taxAmount = CanadianTaxJurisdiction.SALES_TAX.getTaxAmountFor(sellableItem);
-		assertNotNull(taxAmount, "tax amount is null");
-		assertTrue(taxAmount.getCurrencyUnit().equals(CurrencyUnit.CAD), "currency unit is " + taxAmount.getCurrencyUnit());
-		assertTrue(taxAmount.getAmount().equals(new BigDecimal("1.50")), "taxAmount is " + taxAmount.getAmount());
+		taxAmount = salesTax.getTaxAmountFor(sellableItem);
+		assertNotNull(taxAmount, "tax amount");
+		assertEquals(taxAmount.getCurrencyUnit(), CurrencyUnit.CAD, "currency unit");
+		assertEquals(taxAmount.getAmount(), new BigDecimal("1.50"), "tax amount");
 	}
 	
 	/**
@@ -62,10 +64,10 @@ class SalesTaxTest {
 	@Test
 	void testGetTaxAmountForExemptFood() {
 		sellableItem = TestHelpers.CANADIAN_CHOCOLATE_BAR_PRICE;
-		taxAmount = CanadianTaxJurisdiction.SALES_TAX.getTaxAmountFor(sellableItem);
-		assertNotNull(taxAmount, "tax amount is null");
-		assertTrue(taxAmount.getCurrencyUnit().equals(CurrencyUnit.CAD), "currency unit is " + taxAmount.getCurrencyUnit());
-		assertTrue(taxAmount.isZero(), "taxAmount is " + taxAmount.getAmount());
+		taxAmount = salesTax.getTaxAmountFor(sellableItem);
+		assertNotNull(taxAmount, "tax amount");
+		assertEquals(taxAmount.getCurrencyUnit(), CurrencyUnit.CAD, "currency unit");
+		assertTrue(taxAmount.isZero(), "taxAmount.isZero");
 	}
 
 	/**
@@ -76,10 +78,10 @@ class SalesTaxTest {
 	@Test
 	void testGetTaxAmountForExemptMedicalProduct() {
 		sellableItem = TestHelpers.CANADIAN_PACKET_OF_HEADACHE_PILLS_PRICE;
-		taxAmount = CanadianTaxJurisdiction.SALES_TAX.getTaxAmountFor(sellableItem);
-		assertNotNull(taxAmount, "tax amount is null");
-		assertTrue(taxAmount.getCurrencyUnit().equals(CurrencyUnit.CAD), "currency unit is " + taxAmount.getCurrencyUnit());
-		assertTrue(taxAmount.isZero(), "taxAmount is " + taxAmount.getAmount());
+		taxAmount = salesTax.getTaxAmountFor(sellableItem);
+		assertNotNull(taxAmount, "tax amount");
+		assertEquals(taxAmount.getCurrencyUnit(), CurrencyUnit.CAD, "currency unit");
+		assertTrue(taxAmount.isZero(), "taxAmount.isZero");
 	}
 
 }

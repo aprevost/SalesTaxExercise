@@ -128,16 +128,20 @@ Things I haven't done yet, but would have gotten around to if my time to complet
 - I didn't include as many explanatory comments inside function implementations as I usually would, to make what's actually happening inside the logic easier to understand for other developers tasked with maintaining my code in the future
 
 
-2) not all the Javadoc is complete (documentation is a must for architects!)
-
-- it's mostly there for interfaces, but still missing from many of the implementation classes
+2) not all the Javadoc is complete (good documentation is a must for architects!)
 
 
-3) many more unit tests are required
+3) more and better unit tests are required
 
-- I do believe in the principles of Test-Driven Development, so the test cases required to ensure the 3 sample outputs above would be generated correctly were largely written before the code required to make those tests pass
+- I do believe in the principles of Test-Driven Development, so the test cases required to ensure the 3 sample outputs above would be generated correctly were all created
 
 - but no tests were written for any other possible cases, even the ones I explicitly designed my code to handle (for example, 2 units of the same good in the same basket)
+
+- all the test cases are really integration/functional/end-to-end tests (that start at different depths in the code), not unit tests, because I did not do any mocking
+
+- adding Mockito to allow true unit tests that don't exercise any logic outside
+the unit I'm trying to test would make my tests a lot easier to maintain in
+the long term
 
 
 4) I almost completely ignored the view aspect of a complete design
@@ -154,9 +158,14 @@ Things I haven't done yet, but would have gotten around to if my time to complet
 
 - the hope is that when the need arose, this class could be extended to create one that supports all the needed functionality
 
-- if not, we would have to swap in a custom Region class of our own creation which reimplemented all the methods from this one that our code actually uses, plus the additional ones required
+- if not, we would have to swap in a custom Region class of our own creation which re-implemented all the methods from this one that our code actually uses, plus the additional ones required
 
 
+6) implementing the taxable categories as a single enum is too simple
+
+- that design would not survive the addition of a 2nd tax jurisdiction
+
+- taxable categories really should be an interface with a different implementation/different possible values for each tax jurisdiction
 
 
 

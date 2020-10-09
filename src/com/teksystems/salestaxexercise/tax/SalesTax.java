@@ -171,4 +171,39 @@ public class SalesTax implements Tax {
 		return zeroTax;
 	}
 	
+	@Override
+	public String toString() {
+		return name;
+	}
+	
+	/**
+	 * This is a hack, in the real world each tax would likely have a unique
+	 * key defined in the data source
+	 * 
+	 * @return a string that uniquely identifies this tax
+	 */
+	public String getPrimaryKey() {
+		return this.toString()
+				+ taxJurisdiction.getRegion().toString();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+        if (this == obj) {
+        	return true;
+        }
+        if (!(obj instanceof SalesTax)) {
+        	return false;
+        }
+
+        SalesTax that = (SalesTax) obj;
+        return this.getPrimaryKey().equals(that.getPrimaryKey());    
+	}
+	
+    @Override
+	public int hashCode() {
+    	return getPrimaryKey().hashCode();
+    }
+
+	
 }

@@ -23,7 +23,6 @@ public interface TaxJurisdiction {
 	public Region getRegion();
 	
 	/**
-	 * 
 	 * TODO: SOLID design principles suggest maybe this shouldn't be here.
 	 * If we want to allow simple implementations not to have a category,
 	 * this should be split out in to another interface again.
