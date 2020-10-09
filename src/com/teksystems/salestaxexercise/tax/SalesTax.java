@@ -145,7 +145,7 @@ public class SalesTax implements Tax {
 		//Use preTaxPrice.withAmount rather than just creating a new Money
 		//object from scratch so that currency of the pre-tax price is
 		//maintained for the tax amount of 0 as well
-		Money zeroTax = preTaxPrice.withAmount(BigDecimal.ZERO);
+		Money zeroTax = preTaxPrice.withAmount(0);
 		
 		//No need to go through all the logic below if the price is zero
 		if (preTaxPrice.isZero()) {

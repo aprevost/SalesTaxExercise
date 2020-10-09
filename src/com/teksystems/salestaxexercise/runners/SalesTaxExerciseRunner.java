@@ -4,6 +4,7 @@
 package com.teksystems.salestaxexercise.runners;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.teksystems.salestaxexercise.Receiptable;
@@ -35,7 +36,18 @@ public class SalesTaxExerciseRunner {
 	 * @param args ignored
 	 */
 	public static void main(String[] args) {
-		System.out.println("Inside main");
+		outputReceipts.addAll(Arrays.asList(
+				TestHelpers.TEST_BASKET_1,
+				TestHelpers.TEST_BASKET_2,
+				TestHelpers.TEST_BASKET_3
+		));
+		int count = 1;
+		for (Receiptable receipt : outputReceipts) {
+			System.out.println("Output " + count + ":");
+			receipt.printReceipt();
+			System.out.println();
+			count++;
+		}
 	}
 
 }

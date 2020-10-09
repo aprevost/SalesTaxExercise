@@ -15,6 +15,9 @@ import com.teksystems.salestaxexercise.SellableItem;
  * Abstract class that implements all the common logic that should be the same
  * for all tax jurisdictions
  * 
+ * TODO: override equals and hashCode for this class, because these objects
+ * will be stored in a HashSet in TaxableBasket implementations
+ * 
  * @author Andrew
  */
 public abstract class AbstractTaxJurisdiction implements TaxJurisdiction {
@@ -60,11 +63,11 @@ public abstract class AbstractTaxJurisdiction implements TaxJurisdiction {
 
 	@Override
 	public LinkedHashMap<Tax, Money> getTaxAmountsFor(SellableItem sellableItem) {
-		LinkedHashMap<Tax,Money> taxAmountList = new LinkedHashMap<Tax,Money>();
+		LinkedHashMap<Tax,Money> taxAmountMap = new LinkedHashMap<Tax,Money>();
 		for (Tax tax : taxes) {
-			taxAmountList.put(tax, tax.getTaxAmountFor(sellableItem));
+			taxAmountMap.put(tax, tax.getTaxAmountFor(sellableItem));
 		}
-		return taxAmountList;
+		return taxAmountMap;
 	}
 
 

@@ -42,7 +42,7 @@ public class RegionHelper {
 	 * 
 	 * @param fixedRegion the region inside which the other region could be contained
 	 * @param possiblyContainedRegion the region which might be contained within the other region
-	 * @return
+	 * @return whether the first region is or contains the second region
 	 */
 	public static final boolean regionIsOrContainsRegion(Region fixedRegion, Region possiblyContainedRegion) {
 		if (fixedRegion == null || possiblyContainedRegion == null) {

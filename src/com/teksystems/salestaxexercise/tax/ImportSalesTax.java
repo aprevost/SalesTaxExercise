@@ -45,7 +45,7 @@ public class ImportSalesTax extends SalesTax {
 		//Use preTaxPrice.withAmount rather than just creating a new Money
 		//object form scratch so that currency of the pre-tax price is maintained
 		//for the tax amount of 0 as well
-		Money zeroTax = preTaxPrice.withAmount(BigDecimal.ZERO);
+		Money zeroTax = preTaxPrice.withAmount(0);
 		
 		if (preTaxPrice.isZero()) {
 			return zeroTax;

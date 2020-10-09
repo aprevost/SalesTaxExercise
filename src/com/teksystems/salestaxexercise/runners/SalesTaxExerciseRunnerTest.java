@@ -24,15 +24,31 @@ class SalesTaxExerciseRunnerTest {
 	void testMain() {
 		SalesTaxExerciseRunner.main(null);
 		List<Receiptable> outputReceipts = SalesTaxExerciseRunner.getOutputReceipts();
-		assertNotNull(outputReceipts, "outputReceipts is null");
-		assertEquals(outputReceipts.size(), 3, "outputReceipts size is not 3");
+		assertNotNull(outputReceipts, "outputReceipts");
+		assertEquals(outputReceipts.size(), 3, "outputReceipts.size");
 		assertEquals(
 				outputReceipts.get(0).toString(), 
-					"1 book: 12.49\r\n" + 
-					"1 music CD: 16.49\r\n" + 
-					"1 chocolate bar: 0.85\r\n" + 
-					"Sales Taxes: 1.50 Total: 29.83\r\n",
-				"outputReceipts[0] does not match expected string"
+				"1 book: 12.49" + System.lineSeparator()
+					+ "1 music CD: 16.49" + System.lineSeparator()
+					+ "1 chocolate bar: 0.85" + System.lineSeparator()
+					+ "Sales Taxes: 1.50 Total: 29.83" + System.lineSeparator(),
+				"outputReceipts[0]"
+		);
+		assertEquals(
+				outputReceipts.get(1).toString(), 
+				"1 imported box of chocolates: 10.50" + System.lineSeparator()
+					+ "1 imported bottle of perfume: 54.65" + System.lineSeparator()
+					+ "Sales Taxes: 7.65 Total: 65.15" + System.lineSeparator(),
+				"outputReceipts[0]"
+		);
+		assertEquals(
+				outputReceipts.get(2).toString(), 
+				"1 imported bottle of perfume: 32.19" + System.lineSeparator()
+					+ "1 bottle of perfume: 20.89" + System.lineSeparator()
+					+ "1 packet of headache pills: 9.75" + System.lineSeparator()
+					+ "1 imported box of chocolates: 11.85" + System.lineSeparator()
+					+ "Sales Taxes: 6.70 Total: 74.68" + System.lineSeparator(),
+				"outputReceipts[0]"
 		);
 	}
 

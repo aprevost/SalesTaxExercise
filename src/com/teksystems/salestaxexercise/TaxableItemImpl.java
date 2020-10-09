@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.teksystems.salestaxexercise.tax;
+package com.teksystems.salestaxexercise;
 
 import java.util.LinkedHashMap;
 
 import org.joda.money.Money;
 
-import com.teksystems.salestaxexercise.SellableItem;
+import com.teksystems.salestaxexercise.tax.Tax;
 
 /**
  * Generic Implementation of the TaxableItem interface, for adding
@@ -52,11 +52,17 @@ public class TaxableItemImpl implements TaxableItem {
 
 	@Override
 	public void addTaxAmounts(LinkedHashMap<Tax,Money> taxAmounts) {
-		taxAmounts.putAll(taxAmounts);
+		this.taxAmounts.putAll(taxAmounts);
 	}
 
 	@Override
 	public Money getTotalTax() {
+		if(taxAmounts.isEmpty()) {
+			//Use getPrice().withAmount rather than just creating a new Money
+			//object from scratch so that currency of the pre-tax price is
+			//maintained for the tax amount of 0 as well
+			return getSellableItem().getPrice().withAmount(0);
+		}
 		return Money.total(taxAmounts.values()); 
 	}
 
