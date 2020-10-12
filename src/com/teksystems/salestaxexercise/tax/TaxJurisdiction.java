@@ -9,7 +9,7 @@ import com.teksystems.salestaxexercise.SellableItem;
 import org.joda.money.Money;
 
 /**
- * Interface for any tax jurisdiction
+ * Generic interface for any tax jurisdiction.
  * 
  * @author Andrew
  */

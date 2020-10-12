@@ -8,6 +8,8 @@ import org.joda.money.Money;
 import com.teksystems.salestaxexercise.SellableItem;
 
 /**
+ * Generic interface for any tax, in any jurisdiction.
+ * 
  * @author Andrew
  *
  */

@@ -15,12 +15,7 @@ import com.teksystems.salestaxexercise.helpers.RegionHelper;
 import com.teksystems.salestaxexercise.tax.canada.CanadianTaxJurisdiction;
 
 /**
- * Constructs the objects needed to run the test exercise
- * 
- * Also used in other unit tests throughout the module
- * 
- * In a real system these objects would all be built dynamically based on
- * data retrieved from a data source
+ * Constructs objects that simplify testing this module.
  * 
  * TODO: the constants in this class should be reorganized in to subclasses for
  * GOOD, PRICED_GOOD, BASKET

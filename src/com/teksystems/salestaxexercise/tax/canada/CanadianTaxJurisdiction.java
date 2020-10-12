@@ -17,7 +17,7 @@ import com.teksystems.salestaxexercise.tax.SalesTax;
 import com.teksystems.salestaxexercise.tax.TaxableCategory;
 
 /**
- * Singleton class that represents the Canadian federal tax jurisdiction
+ * Singleton class that represents the Canadian federal tax jurisdiction.
  * 
  * NOTE: in a real system, there likely wouldn't be a need for this class, or
  * at least for all of the constants inside it to be constants. All of this

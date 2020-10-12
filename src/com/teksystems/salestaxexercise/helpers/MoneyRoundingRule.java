@@ -9,8 +9,8 @@ import java.math.RoundingMode;
 import org.joda.money.Money;
 
 /**
- * Helper class that can be used to round any Money object to a multiple of any
- * arbitrary amount
+ * Helper class that can be used to round any {@link org.joda.money.Money} object to a multiple of any
+ * arbitrary amount.
  * 
  * (e.g. a multiple of 5 cents, a multiple of 2 dollars, etc.)
  * 

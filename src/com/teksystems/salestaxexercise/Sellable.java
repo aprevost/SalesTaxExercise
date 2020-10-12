@@ -8,7 +8,7 @@ import com.ibm.icu.util.Region;
 import org.joda.money.Money;
 
 /**
- * A generic interface for anything that can be sold for a given price
+ * Generic interface for anything that can be sold for a given price.
  * 
  * This interface could apply to an individual item that can be sold, e.g. a
  * physical good, or a service. But it could also apply to a collection of

@@ -6,7 +6,7 @@ package com.teksystems.salestaxexercise.helpers;
 import com.ibm.icu.util.Region;
 
 /**
- * Contains helpers related to region
+ * Helpers related to region handling.
  * 
  * @author Andrew
  *
@@ -21,13 +21,13 @@ public class RegionHelper {
 	 */
 	public static final Region USA = Region.getInstance("US");
 	/**
-	 * The {@link com.ibm.icu.util.Region} object for the US
+	 * The {@link com.ibm.icu.util.Region} object for France
 	 */
 	public static final Region FRANCE = Region.getInstance("FR");
 	
 	/**
 	 * Helper function to determine if two regions are equal OR if the second
-	 * region is contained inside the first
+	 * region is contained inside the first.
 	 * 
 	 * The {@link com.ibm.icu.util.Region} class was chosen precisely because
 	 * it implements the {@link com.ibm.icu.util.Region#contains(Region)}

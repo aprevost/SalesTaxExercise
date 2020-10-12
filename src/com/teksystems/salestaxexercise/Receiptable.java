@@ -4,6 +4,8 @@
 package com.teksystems.salestaxexercise;
 
 /**
+ * Basic interface for anything we can print a receipt for.
+ * 
  * @author Andrew
  *
  */

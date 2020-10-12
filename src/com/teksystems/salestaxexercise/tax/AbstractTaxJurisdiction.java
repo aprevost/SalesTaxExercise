@@ -12,11 +12,11 @@ import com.ibm.icu.util.Region;
 import com.teksystems.salestaxexercise.SellableItem;
 
 /**
- * Abstract class that implements all the common logic that should be the same
- * for all tax jurisdictions
+ * Abstract class that implements all logic that should be the same
+ * for all tax jurisdictions.
  * 
  * TODO: override equals and hashCode for this class, because these objects
- * will be stored in a HashSet in TaxableBasket implementations
+ * will be stored in a HashSet in TaxableBasket implementations.
  * 
  * @author Andrew
  */

@@ -10,10 +10,10 @@ import org.joda.money.Money;
 import com.teksystems.salestaxexercise.tax.Tax;
 
 /**
- * Defines the interface for any object that has taxes associated with it
+ * Interface for anything that can have taxes associated with it.
  * 
  * Not just individual items or goods that are taxable, but also collections
- * of taxable goods
+ * of taxable goods.
  * 
  * @author Andrew
  *

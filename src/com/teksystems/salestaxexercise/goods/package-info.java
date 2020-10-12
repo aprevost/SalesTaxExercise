@@ -1,7 +1,7 @@
 /**
- * A good is the simplest type of sellable item.
+ * Classes for goods, the most basic implementation of the {@link com.teksystems.salestaxexercise.SellableItem} interface.
  * 
- * This package contains classes for goods that implement the {@link com.teksystems.salestaxexercise.SellableItem} interface.
+ * A good is the simplest type of sellable item.
  * 
  * @author Andrew
  */

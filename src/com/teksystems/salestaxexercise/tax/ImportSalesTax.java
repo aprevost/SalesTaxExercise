@@ -15,11 +15,11 @@ import com.teksystems.salestaxexercise.helpers.MoneyRoundingRule;
 import com.teksystems.salestaxexercise.helpers.RegionHelper;
 
 /**
- * Generic class for implementing an import duty that is assessed like a sales tax
+ * Generic class for implementing an import duty that is assessed like a sales tax.
  * 
  * Identical in almost every way to {@link SalesTax}, just adds a check in
  * {@link #getTaxAmountFor(SellableItem)} to return an amount of 0 if the item
- * is not imported
+ * is not imported.
  * 
  * @author Andrew
  *

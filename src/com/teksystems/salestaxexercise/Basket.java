@@ -7,9 +7,9 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 
 /**
- * Basic interface for a collection of items with prices attached to them
+ * Basic interface for any collection of items with prices attached to them.
  * 
- * TODO: this interface would ideally just extend Collection
+ * TODO: should this interface extend Collection?
  * 
  * @author Andrew
  *

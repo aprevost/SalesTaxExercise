@@ -1,5 +1,5 @@
 /**
- * Contains all interfaces and classes related to taxes
+ * All generic interfaces and classes related to taxes.
  * 
  * @author Andrew
  */

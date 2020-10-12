@@ -1,5 +1,5 @@
 /**
- * Base package for the module
+ * Interfaces and implementations for a basket of sellable items.
  * 
  * @author Andrew
  */

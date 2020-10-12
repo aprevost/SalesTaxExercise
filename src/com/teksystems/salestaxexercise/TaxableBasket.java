@@ -10,6 +10,8 @@ import org.joda.money.CurrencyUnit;
 import com.teksystems.salestaxexercise.tax.TaxJurisdiction;
 
 /**
+ * Interface for a taxable collection of sellable items.
+ * 
  * @author Andrew
  *
  */

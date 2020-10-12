@@ -11,7 +11,7 @@ import com.teksystems.salestaxexercise.SellableItem;
 import com.teksystems.salestaxexercise.helpers.RegionHelper;
 
 /**
- * A good with its price for a specific region
+ * Generic implementation of a sellable {@link Good}, with its price for a specific region.
  * 
  * @author Andrew
  *

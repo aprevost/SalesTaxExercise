@@ -1,5 +1,5 @@
 /**
- * Contains helpers useful across the entire module
+ * Helper classes useful across the entire module.
  * 
  * @author Andrew
  */

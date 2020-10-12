@@ -14,9 +14,13 @@ import com.teksystems.salestaxexercise.SellableItem;
 import com.teksystems.salestaxexercise.helpers.MoneyRoundingRule;
 
 /**
- * Generic sales tax class
+ * Generic sales tax class.
  * 
- * Should be able to be used for most simple sales taxes in most jurisdictions
+ * Should be able to be used for most simple sales taxes in most jurisdictions.
+ * 
+ * TODO: the most basic sales tax would have no exempted categories. Remove the
+ * exemptions from this class, and make a separate abstract class (and separate
+ * interface) that adds exemptions to it.
  * 
  * @author Andrew
  *

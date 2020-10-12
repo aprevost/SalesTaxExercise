@@ -17,13 +17,13 @@ import com.teksystems.salestaxexercise.tax.Tax;
 import com.teksystems.salestaxexercise.tax.TaxJurisdiction;
 
 /**
- * Implementation of a basket of good with taxes
+ * Generic implementation of a basket of sellable items with taxes.
  * 
- * TODO: this class shouldn't really implement Receiptable itself, there should
- * be a separate view class for that
+ * TODO: this class shouldn't really implement {@link Receiptable} itself, there should
+ * be a separate View class for that.
  * 
  * TODO: this class is still a work in progress, only the functionality vital to
- * producing the sample outputs for the exercise has been implemented
+ * producing the sample outputs for the exercise has been implemented.
  * 
  * @author Andrew
  *

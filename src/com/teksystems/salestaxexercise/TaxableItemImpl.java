@@ -10,8 +10,8 @@ import org.joda.money.Money;
 import com.teksystems.salestaxexercise.tax.Tax;
 
 /**
- * Generic Implementation of the TaxableItem interface, for adding
- * taxes to a sellable item
+ * Generic implementation of the {@link TaxableItem} interface, for adding
+ * taxes to a {@link SellableItem}.
  * 
  * @author Andrew
  *

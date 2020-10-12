@@ -6,7 +6,10 @@ package com.teksystems.salestaxexercise.goods;
 import com.ibm.icu.util.Region;
 
 /**
- * Implementation of a basic product/good
+ * A generic product/good.
+ * 
+ * Contains only the properties of a good that are universal, no price or tax
+ * information that could vary depending on which region the good was sold in.
  * 
  * @author Andrew
  */
