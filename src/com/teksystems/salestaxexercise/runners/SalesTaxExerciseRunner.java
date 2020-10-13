@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.teksystems.salestaxexercise.Receiptable;
+import com.teksystems.salestaxexercise.runners.TestHelpers.Baskets;
 
 /**
  * Contains the static main function used to run and test the entire project.
@@ -37,9 +38,9 @@ public class SalesTaxExerciseRunner {
 	 */
 	public static void main(String[] args) {
 		outputReceipts.addAll(Arrays.asList(
-				TestHelpers.TEST_BASKET_1,
-				TestHelpers.TEST_BASKET_2,
-				TestHelpers.TEST_BASKET_3
+				Baskets.TEST_BASKET_1,
+				Baskets.TEST_BASKET_2,
+				Baskets.TEST_BASKET_3
 		));
 		int count = 1;
 		for (Receiptable receipt : outputReceipts) {

@@ -12,7 +12,8 @@ import org.joda.money.Money;
 import org.junit.jupiter.api.Test;
 
 import com.teksystems.salestaxexercise.SellableItem;
-import com.teksystems.salestaxexercise.runners.TestHelpers;
+import com.teksystems.salestaxexercise.runners.TestHelpers.PricedGoods.CanadianPrices;
+import com.teksystems.salestaxexercise.runners.TestHelpers.PricedGoods.CanadianPrices.CanadianImportPrices;
 import com.teksystems.salestaxexercise.tax.canada.CanadianTaxJurisdiction;
 
 /**
@@ -35,7 +36,7 @@ class ImportSalesTaxTest {
 	 */
 	@Test
 	void testGetTaxAmountForExemptDomesticGood() {
-		sellableItem = TestHelpers.CANADIAN_BOOK_PRICE;
+		sellableItem = CanadianPrices.BOOK;
 		taxAmount = importSalesTax.getTaxAmountFor(sellableItem);
 		assertNotNull(taxAmount, "tax amount");
 		assertEquals(taxAmount.getCurrencyUnit(), CurrencyUnit.CAD, "currency unit");
@@ -49,7 +50,7 @@ class ImportSalesTaxTest {
 	 */
 	@Test
 	void testGetTaxAmountForImportedGood() {
-		sellableItem = TestHelpers.AMERICAN_BOX_OF_CHOCOLATES_PRICE;
+		sellableItem = CanadianImportPrices.AMERICAN_BOX_OF_CHOCOLATES;
 		taxAmount = importSalesTax.getTaxAmountFor(sellableItem);
 		assertNotNull(taxAmount, "tax amount");
 		assertEquals(taxAmount.getCurrencyUnit(), CurrencyUnit.CAD, "currency unit");

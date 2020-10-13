@@ -171,6 +171,8 @@ Things I haven't done yet, but would have gotten around to if my time to complet
 - log4j should be added to the project, along with some basic trace logging at the DEBUG/INFO levels
 
 
+8) for continuous integration and deployment, we should ensure code that does not pass the unit tests could not be pushed to GitHub
 
+- Eclipse must have a built-in way of adding Git hooks that run all unit tests before any push occurs
 
-
+- I have never done that with Eclipse/Java, but have with WebStorm/Node.js

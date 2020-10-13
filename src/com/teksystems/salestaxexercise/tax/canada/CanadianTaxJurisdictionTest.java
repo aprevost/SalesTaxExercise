@@ -15,7 +15,8 @@ import org.joda.money.Money;
 import org.junit.jupiter.api.Test;
 
 import com.teksystems.salestaxexercise.SellableItem;
-import com.teksystems.salestaxexercise.runners.TestHelpers;
+import com.teksystems.salestaxexercise.runners.TestHelpers.PricedGoods.CanadianPrices;
+import com.teksystems.salestaxexercise.runners.TestHelpers.PricedGoods.CanadianPrices.CanadianImportPrices;
 import com.teksystems.salestaxexercise.tax.Tax;
 import com.teksystems.salestaxexercise.tax.TaxableCategory;
 
@@ -34,7 +35,7 @@ class CanadianTaxJurisdictionTest {
 	 */
 	@Test
 	void testGetTaxableCategoryForBook() {
-		sellableItem = TestHelpers.CANADIAN_BOOK_PRICE;
+		sellableItem = CanadianPrices.BOOK;
 		taxableCategory = taxJurisdiction.getTaxableCategoryFor(sellableItem);
 		assertNotNull(taxableCategory, "taxableCategory");
 		assertEquals(taxableCategory, TaxableCategory.BOOK, "taxableCategory");
@@ -45,7 +46,7 @@ class CanadianTaxJurisdictionTest {
 	 */
 	@Test
 	void testGetTaxableCategoryForChocolateBar() {
-		sellableItem = TestHelpers.CANADIAN_CHOCOLATE_BAR_PRICE;
+		sellableItem = CanadianPrices.CHOCOLATE_BAR;
 		taxableCategory = taxJurisdiction.getTaxableCategoryFor(sellableItem);
 		assertNotNull(taxableCategory, "taxableCategory");
 		assertEquals(taxableCategory, TaxableCategory.FOOD, "taxableCategory");
@@ -56,7 +57,7 @@ class CanadianTaxJurisdictionTest {
 	 */
 	@Test
 	void testGetTaxableCategoryForBoxOfChocolates() {
-		sellableItem = TestHelpers.AMERICAN_BOX_OF_CHOCOLATES_PRICE;
+		sellableItem = CanadianImportPrices.AMERICAN_BOX_OF_CHOCOLATES;
 		taxableCategory = taxJurisdiction.getTaxableCategoryFor(sellableItem);
 		assertNotNull(taxableCategory, "taxableCategory");
 		assertEquals(taxableCategory, TaxableCategory.FOOD, "taxableCategory");
@@ -67,7 +68,7 @@ class CanadianTaxJurisdictionTest {
 	 */
 	@Test
 	void testGetTaxableCategoryForHeadachePills() {
-		sellableItem = TestHelpers.CANADIAN_PACKET_OF_HEADACHE_PILLS_PRICE;
+		sellableItem = CanadianPrices.PACKET_OF_HEADACHE_PILLS;
 		taxableCategory = taxJurisdiction.getTaxableCategoryFor(sellableItem);
 		assertNotNull(taxableCategory, "taxableCategory");
 		assertEquals(taxableCategory, TaxableCategory.MEDICAL_PRODUCT, "taxableCategory");
@@ -78,7 +79,7 @@ class CanadianTaxJurisdictionTest {
 	 */
 	@Test
 	void testGetTaxableCategoryForMusicCD() {
-		sellableItem = TestHelpers.CANADIAN_MUSIC_CD_PRICE;
+		sellableItem = CanadianPrices.MUSIC_CD;
 		taxableCategory = taxJurisdiction.getTaxableCategoryFor(sellableItem);
 		assertNotNull(taxableCategory, "taxableCategory");
 		assertEquals(taxableCategory, TaxableCategory.OTHER, "taxableCategory");
@@ -89,7 +90,7 @@ class CanadianTaxJurisdictionTest {
 	 */
 	@Test
 	void testGetTaxableCategoryForBottleOfPerfume() {
-		sellableItem = TestHelpers.FRENCH_BOTTLE_OF_PERFUME_PRICE;
+		sellableItem = CanadianImportPrices.FRENCH_BOTTLE_OF_PERFUME;
 		taxableCategory = taxJurisdiction.getTaxableCategoryFor(sellableItem);
 		assertNotNull(taxableCategory, "taxableCategory");
 		assertEquals(taxableCategory, TaxableCategory.OTHER, "taxableCategory");
@@ -118,7 +119,7 @@ class CanadianTaxJurisdictionTest {
 	 */
 	@Test
 	void testGetTaxAmountsForExemptDomesticItem() {
-		sellableItem = TestHelpers.CANADIAN_BOOK_PRICE;
+		sellableItem = CanadianPrices.BOOK;
 		taxAmounts = taxJurisdiction.getTaxAmountsFor(sellableItem);
 		assertNotNull(taxAmounts, "taxAmounts");
 		assertEquals(taxAmounts.size(), 2, "taxAmounts size");
@@ -143,7 +144,7 @@ class CanadianTaxJurisdictionTest {
 	 */
 	@Test
 	void testGetTaxAmountsForNonExemptDomesticItem() {
-		sellableItem = TestHelpers.CANADIAN_MUSIC_CD_PRICE;
+		sellableItem = CanadianPrices.MUSIC_CD;
 		taxAmounts = taxJurisdiction.getTaxAmountsFor(sellableItem);
 		assertNotNull(taxAmounts, "taxAmounts");
 		assertEquals(taxAmounts.size(), 2, "taxAmounts size");
@@ -168,7 +169,7 @@ class CanadianTaxJurisdictionTest {
 	 */
 	@Test
 	void testGetTaxAmountsForExemptImportedItem() {
-		sellableItem = TestHelpers.AMERICAN_BOX_OF_CHOCOLATES_PRICE;
+		sellableItem = CanadianImportPrices.AMERICAN_BOX_OF_CHOCOLATES;
 		taxAmounts = taxJurisdiction.getTaxAmountsFor(sellableItem);
 		assertNotNull(taxAmounts, "taxAmounts");
 		assertEquals(taxAmounts.size(), 2, "taxAmounts size");
@@ -193,7 +194,7 @@ class CanadianTaxJurisdictionTest {
 	 */
 	@Test
 	void testGetTaxAmountsForNonExemptImportedItem() {
-		sellableItem = TestHelpers.FRENCH_BOTTLE_OF_PERFUME_PRICE;
+		sellableItem = CanadianImportPrices.FRENCH_BOTTLE_OF_PERFUME;
 		taxAmounts = taxJurisdiction.getTaxAmountsFor(sellableItem);
 		assertNotNull(taxAmounts, "taxAmounts");
 		assertEquals(taxAmounts.size(), 2, "taxAmounts size");
