@@ -16,28 +16,34 @@ import org.joda.money.Money;
 public interface TaxJurisdiction {
 	
 	/**
-	 * Every tax jurisdiction must correspond to a specific geographical region
+	 * Get the geographical region corresponding to this jurisdiction.
 	 * 
-	 * @return the geographical region corresponding to this jurisdiction
+	 * @return The geographical region corresponding to this jurisdiction.
 	 */
 	public Region getRegion();
 	
 	/**
+	 * Get the tax category of a specific product or service in this jurisdiction.
+	 * 
 	 * TODO: SOLID design principles suggest maybe this shouldn't be here.
-	 * If we want to allow simple implementations not to have a category,
-	 * this should be split out in to another interface again.
+	 * There may be tax jurisdictions where all taxes are universally applied
+	 * to all goods and services, meaning there is no need to keep track of
+	 * categories. So this method should be split out in to a separate
+	 * interface that extends this one, specifically for jurisdictions that
+	 * require categories.
 	 * 
 	 * @param sellableItem the item to be sold
-	 * @return the taxable category for this item in this jurisdiction, null if no category found
+	 * @return The taxable category for this item in this jurisdiction.
 	 */
 	public TaxableCategory getTaxableCategoryFor(SellableItem sellableItem);
 	
 	/**
-	 * The list of taxes for a given jurisdiction must not contain any duplicate
-	 * taxes and must be maintained in a particular order, as some taxes
-	 * may be applied on top of other taxes prior to them on the list
+	 * The set of taxes which apply in this tax jurisdiction.
 	 * 
-	 * e.g., Quebec sales taxes are applied on top of the federal sales tax
+	 * Must not contain any duplicate taxes and must be maintained in a
+	 * particular order, as some taxes may be applied on top of other taxes prior to them on the list
+	 * 
+	 * e.g., Quebec sales taxes are applied on top of the Canadian federal GST.
 	 * 
 	 * The SOLID design principle that interfaces should wherever possible
 	 * depend on other interfaces, not concrete classes,  would suggest this
@@ -50,11 +56,14 @@ public interface TaxJurisdiction {
 	 * the benefits of depending on the concrete class outweighed the loss of
 	 * flexibility.
 	 * 
-	 * @return the ordered set of all taxes for this jurisdiction
+	 * @return The ordered set of all taxes for this jurisdiction.
 	 */
 	public LinkedHashSet<Tax> getAllTaxes();
 		
 	/**
+	 * Get an ordered map of all the individual taxes and their amounts for
+	 * the specified sellable item.
+	 * 
 	 * The SOLID design principle that interfaces should wherever possible
 	 * depend on other interfaces, not concrete classes, would suggest this
 	 * should return a Map, not a LinkedHashMap.
@@ -66,7 +75,7 @@ public interface TaxJurisdiction {
 	 * loss in flexibility.
 	 * 
 	 * @param sellableItem the item to be sold
-	 * @return a map from each tax for 
+	 * @return An ordered map of taxes and their respective amounts for the specified sellable item.
 	 */
 	public LinkedHashMap<Tax,Money> getTaxAmountsFor(SellableItem sellableItem);
 		

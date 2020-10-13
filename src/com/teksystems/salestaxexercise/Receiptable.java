@@ -4,13 +4,16 @@
 package com.teksystems.salestaxexercise;
 
 /**
- * Basic interface for anything we can print a receipt for.
+ * Basic interface for printing a receipt.
  * 
  * @author Andrew
  *
  */
 public interface Receiptable {
 		
+	/**
+	 * Print the receipt for this object.
+	 */
 	public void printReceipt();
 
 }

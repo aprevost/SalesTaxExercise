@@ -19,21 +19,26 @@ import org.joda.money.Money;
 public interface Sellable {
 
 	/**
+	 * Get the geographical region in which the sale is taking place.
+	 * 
 	 * The same good or service can be sold for different prices in different
 	 * countries or states or regions. Or might be available for sale in some
 	 * regions, but not others.
 	 * 
 	 * So we require that all sellable items or collections of items have a
-	 * geographical region attached to them
+	 * geographical region of sale attached to them.
 	 * 
-	 * @return region in which the sale is taking place
+	 * @return The region in which the sale is taking place.
 	 */
 	public Region getRegionOfSale();
 	
 	/**
-	 * The price of the item or collection of items in this region
+	 * The basic price of the item or collection of items in this region.
 	 * 
-	 * @return the price
+	 * This would represent the pre-tax price, after-tax prices are added by
+	 * the {@link Taxable} interface.
+	 * 
+	 * @return The price of this sellable object in this region.
 	 */
 	public Money getPrice();
 	

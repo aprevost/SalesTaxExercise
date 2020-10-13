@@ -14,7 +14,7 @@ import com.teksystems.salestaxexercise.SellableItem;
 import com.teksystems.salestaxexercise.helpers.MoneyRoundingRule;
 
 /**
- * Generic sales tax class.
+ * Generic implementation of a simple sales tax.
  * 
  * Should be able to be used for most simple sales taxes in most jurisdictions.
  * 

@@ -139,9 +139,7 @@ Things I haven't done yet, but would have gotten around to if my time to complet
 
 - all the test cases are really integration/functional/end-to-end tests (that start at different depths in the code), not unit tests, because I did not do any mocking
 
-- adding Mockito to allow true unit tests that don't exercise any logic outside
-the unit I'm trying to test would make my tests a lot easier to maintain in
-the long term
+- adding Mockito to allow true unit tests that don't exercise any logic outside the specific class I'm trying to test would make my tests a lot easier to maintain in the long term
 
 
 4) I almost completely ignored the view aspect of a complete design

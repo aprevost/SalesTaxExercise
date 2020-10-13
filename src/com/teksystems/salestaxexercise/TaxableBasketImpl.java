@@ -17,7 +17,7 @@ import com.teksystems.salestaxexercise.tax.Tax;
 import com.teksystems.salestaxexercise.tax.TaxJurisdiction;
 
 /**
- * Generic implementation of a basket of sellable items with taxes.
+ * Generic implementation of the {@link TaxableBasket} interface.
  * 
  * TODO: this class shouldn't really implement {@link Receiptable} itself, there should
  * be a separate View class for that.
