@@ -28,7 +28,7 @@ import com.teksystems.salestaxexercise.helpers.MoneyRoundingRule;
 public class SalesTax implements Tax {
 	
 	/**
-	 * Constructor for a generic sales tax
+	 * Constructor for a generic sales tax.
 	 * 
 	 * TODO: should implement the Builder design pattern on this class to
 	 * simplify construction
@@ -42,8 +42,10 @@ public class SalesTax implements Tax {
 	 * @param name the name of of this tax, required and must be non-empty
 	 * @param percentage the percentage for this sales tax (not divided by 100), required and must be non-zero
 	 * @param exemptedCategories the set of taxable categories that are exempt from this tax, optional
-	 * @param roundingMode the rounding mode for this tax, optional, defaults to {@link java.math.RoundingMode#HALF_UP}
+	 * @param roundingMode the rounding mode for this tax, optional, defaults to {@link RoundingMode#HALF_UP}
 	 * @param customRoundingRule any custom rounding rule that should be applied to this tax, optional
+	 * 
+	 * @throws IllegalArgumentException if any of the required parameters are null or empty/zero.
 	 */
 	public SalesTax(TaxJurisdiction taxJurisdiction, String name, BigDecimal percentage, Set<TaxableCategory> exemptedCategories, RoundingMode roundingMode, MoneyRoundingRule customRoundingRule) {
 
@@ -83,6 +85,13 @@ public class SalesTax implements Tax {
 
 	private String name;
 	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * This implementation will not allow this method to ever return null.
+	 * 
+	 * @return {@inheritDoc} Never null for this implementation.
+	 */
 	@Override
 	public String getName() {
 		return name;
@@ -90,6 +99,13 @@ public class SalesTax implements Tax {
 	
 	private TaxJurisdiction taxJurisdiction;
 	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * This implementation will not allow this method to ever return null.
+	 * 
+	 * @return {@inheritDoc} Never null for this implementation.
+	 */
 	@Override
 	public TaxJurisdiction getTaxJurisdiction() {
 		return taxJurisdiction;
@@ -98,7 +114,13 @@ public class SalesTax implements Tax {
 	private BigDecimal percentageMultiplier;
 
 	/**
-	 * @return the percentage of the tax (e.g. 10.5 for 10.5%, NOT the equivalent multiplier 0.105)
+	 * Get the percentage of this sales tax.
+	 * 
+	 * This will return the actual percent number for this tax, NOT the
+	 * multiplier corresponding to that percentage. (e.g. 10.5 for 10.5%, NOT
+	 * the equivalent multiplier 0.105)
+	 * 
+	 * @return The percentage of the tax.
 	 */
 	public BigDecimal getPercentage() {
 		return percentageMultiplier.multiply(new BigDecimal(10));
@@ -106,16 +128,47 @@ public class SalesTax implements Tax {
 	
 	private RoundingMode roundingMode = RoundingMode.HALF_UP;
 	
+	/**
+	 * Get the rounding mode for this sales tax.
+	 * 
+	 * This implementation will not allow this method to ever return null,
+	 * it will default to {@link RoundingMode#HALF_UP} if no rounding mode was
+	 * specified when this object was constructed.
+	 * 
+	 * @return The rounding mode for this sales tax. Never null.
+	 */
 	public RoundingMode getRoundingMode() {
 		return roundingMode;
 	}
 	
 	private MoneyRoundingRule customRoundingRule;
 	
+	/**
+	 * Get the custom rounding rule for this sales tax, if there is one.
+	 * 
+	 * Will return null if there is no custom rounding rule for this tax.
+	 * 
+	 * @return The custom rounding rule for this sales tax, null if there isn't one.
+	 */
 	public MoneyRoundingRule getCustomRoundingRule() {
 		return customRoundingRule;
 	}
 		
+	/**
+	 * Returns the amount of this tax for the specified price.
+	 * 
+	 * Multiplies by the tax percentage, applying this tax's
+	 * {@link #getRoundingMode()}, and then also applies its
+	 * {@link #getCustomRoundingRule()} if there is one.
+	 * 
+	 * TODO: when exemptions are moved out in to a separate class that extends
+	 * this one, it should be possible to make this method private. Extending
+	 * classes can just call the public {@link #getTaxAmountFor(SellableItem)}
+	 * method instead, will never need to call this method directly.
+	 * 
+	 * @param preTaxPrice the price before this tax is applied
+	 * @return The amount of tax for the input amount. Never null.
+	 */
 	protected Money calculateSalesTax(Money preTaxPrice) {
 		//First do the simple tax percentage multiplication, with default rounding mode
 		Money unroundedTaxAmount = preTaxPrice.multipliedBy(percentageMultiplier, getRoundingMode());
@@ -130,10 +183,30 @@ public class SalesTax implements Tax {
 	
 	private HashSet<TaxableCategory> exemptedCategories = new HashSet<TaxableCategory>();
 	
+	/**
+	 * Get the categories of taxable item that are exempt from this tax.
+	 * 
+	 * TODO: this should be moved out to a separate class that extends
+	 * this one.
+	 * 
+	 * @return The categories of taxable item that are exempt from this tax.
+	 */
 	public HashSet<TaxableCategory> getExemptedCategories() {
 		return exemptedCategories;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * This implementation will not allow this method to ever return null.
+	 * 
+	 * TODO: the exempted categories logic here should be moved out to a
+	 * separate class that extends this one.
+	 * 
+	 * @return {@inheritDoc} Never null for this implementation.
+	 * 
+	 * @throws IllegalArgumentException if sellableItem or its price are null.
+	 */
 	@Override
 	public Money getTaxAmountFor(SellableItem sellableItem) {
 		
@@ -175,22 +248,42 @@ public class SalesTax implements Tax {
 		return zeroTax;
 	}
 	
+	/**
+	 * Get a printable string that identifies this this tax.
+	 * 
+	 * This implementation just returns the {@link #getName()} value for this object.
+	 * 
+	 * @return A printable string that identifies this tax.
+	 */
 	@Override
 	public String toString() {
-		return name;
+		return getName();
 	}
 	
 	/**
-	 * This is a hack, in the real world each tax would likely have a unique
-	 * key defined in the data source
+	 * Get the primary key identifying this tax.
 	 * 
-	 * @return a string that uniquely identifies this tax
+	 * This implementation returns the {@link #toString()} value for this
+	 * object appended to the toString() value of the underlying
+	 * {@link TaxJurisdiction#getRegion()}. This is a hack, in the real world
+	 * each tax would likely have a unique key defined in the data source.
+	 * 
+	 * @return A string that uniquely identifies this tax.
 	 */
 	public String getPrimaryKey() {
 		return this.toString()
 				+ taxJurisdiction.getRegion().toString();
 	}
 	
+	/**
+	 * Check if another object is equal to this one.
+	 * 
+	 * This implementation requires the other object to also be an instance of
+	 * SalesTax, and for its {@link #getPrimaryKey()} method to
+	 * return a value that equals this object's getPrimaryKey().
+	 * 
+	 * @param obj the object to compare to this one
+	 */
 	@Override
 	public boolean equals(Object obj) {
         if (this == obj) {
@@ -204,6 +297,14 @@ public class SalesTax implements Tax {
         return this.getPrimaryKey().equals(that.getPrimaryKey());    
 	}
 	
+	/**
+	 * Get a uniquely identifying hash code for this object.
+	 * 
+	 * This implementation simply returns the hashCode of its
+	 * {@link #getPrimaryKey()} string.
+	 * 
+	 * @return A uniquely identifying hash code for this object.
+	 */
     @Override
 	public int hashCode() {
     	return getPrimaryKey().hashCode();

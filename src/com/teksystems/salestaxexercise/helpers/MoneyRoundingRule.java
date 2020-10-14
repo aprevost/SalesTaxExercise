@@ -20,14 +20,14 @@ import org.joda.money.Money;
 public class MoneyRoundingRule {
 	
 	/**
-	 * The default value to round to, if none is specified - 0.05
+	 * The default value to round to, if none is specified - 0.05.
 	 */
 	public static final BigDecimal ROUND_TO_MULTIPLE_OF_DEFAULT = new BigDecimal("0.05");
 	
 	private BigDecimal roundToMultipleOf = ROUND_TO_MULTIPLE_OF_DEFAULT;
 	
 	/**
-	 * This rule will round input amounts to a multiple of this amount, never null
+	 * This rule will round input amounts to a multiple of this amount, never null.
 	 * 
 	 * @return the interval amount to round to, never null
 	 */
@@ -36,13 +36,17 @@ public class MoneyRoundingRule {
 	}
 	
 	/**
-	 * The default rounding mode used in this class, if none is specified, is {@link java.math.RoundingMode#UP}
+	 * The default rounding mode used in this class.
+	 * 
+	 * If none is specified, is {@link java.math.RoundingMode#UP}
 	 */
 	public static final RoundingMode ROUNDING_MODE_DEFAULT = RoundingMode.UP;
 	
 	private RoundingMode roundingMode = ROUNDING_MODE_DEFAULT;
 	
 	/**
+	 * Get the rounding mode for this rounding rule.
+	 * 
 	 * See {@link java.math.RoundingMode} for possible values
 	 * 
 	 * @return the RoundingMode used by this rule, never null
@@ -53,7 +57,8 @@ public class MoneyRoundingRule {
 	
 	/**
 	 * Static function that can be used to round a Money object to a multiple
-	 * of any arbitrary amount
+	 * of any arbitrary amount.
+	 * 
 	 * (e.g. a multiple of 5 cents, a multiple of 2 dollars, etc.)
 	 * 
 	 * @param value the Money object to be rounded (if null, will return null)
@@ -88,21 +93,23 @@ public class MoneyRoundingRule {
 	}
 	
 	/**
-	 * Rounds the input money object
+	 * Rounds the input money object.
 	 * 
 	 * Just wraps the static {@link MoneyRoundingRule#roundMoney(Money, BigDecimal, RoundingMode)}
 	 * function, passing in the instantiated object's stored rounding settings
 	 * 
 	 * @param value the Money object to be rounded (if null, null will be returned)
 	 * 
-	 * @return a new Money object with a rounded amount, but the same currency as the input value
+	 * @return A new Money object with a rounded amount, but the same currency as the input value.
 	 */
 	public Money round(Money value) {
 		return roundMoney(value, roundToMultipleOf, roundingMode);
 	}
 	
 	/**
-	 * Instantiated objects of this class are basically just wrappers around
+	 * Constructor for instantiating objects of this class.
+	 * 
+	 * Instantiated MoneyRoundingRules are basically just wrappers around
 	 * around the static {@link MoneyRoundingRule#roundMoney(Money, BigDecimal, RoundingMode)}
 	 * function to allow you to store and reuse the same rounding rules over
 	 * and over again with calls to {@link MoneyRoundingRule#round(Money)}.

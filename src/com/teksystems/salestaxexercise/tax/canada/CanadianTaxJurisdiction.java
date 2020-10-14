@@ -29,12 +29,17 @@ import com.teksystems.salestaxexercise.tax.TaxableCategory;
 public class CanadianTaxJurisdiction extends AbstractTaxJurisdiction {
 	
 	/**
-	 * Canadian taxes are always rounded up
+	 * The default rounding mode for Canadian taxes.
+	 * 
+	 * Canadian taxes are always rounded up by default.
 	 */
 	public static final RoundingMode ROUNDING_MODE = RoundingMode.UP;
 
 	/**
-	 * Canadian taxes are always rounded up to the nearest multiple of 5 cents
+	 * The custom rounding rule for Canadian taxes.
+	 * 
+	 *  Canadian taxes are always rounded up to the nearest multiple of 5 cents
+	 *  by default.
 	 */
 	public static final MoneyRoundingRule ROUNDING_RULE = new MoneyRoundingRule(
 			new BigDecimal("0.05"),
@@ -45,6 +50,11 @@ public class CanadianTaxJurisdiction extends AbstractTaxJurisdiction {
 	//declarations above, because those constants are used in the constructor
 	private static CanadianTaxJurisdiction instance = new CanadianTaxJurisdiction();
 	
+	/**
+	 * Get the Singleton instance of this class.
+	 * 
+	 * @return The Singleton CanadianTaxJurisdiction object.
+	 */
 	public static CanadianTaxJurisdiction getInstance() {
 		return instance;
 	}
@@ -57,7 +67,7 @@ public class CanadianTaxJurisdiction extends AbstractTaxJurisdiction {
 		importSalesTax = new ImportSalesTax(
 				this,
 				"Import Duty",
-				new BigDecimal("5"),
+				new BigDecimal(5),
 				null,
 				CanadianTaxJurisdiction.ROUNDING_MODE,
 				CanadianTaxJurisdiction.ROUNDING_RULE
@@ -67,7 +77,7 @@ public class CanadianTaxJurisdiction extends AbstractTaxJurisdiction {
 		salesTax = new SalesTax(
 				this,
 				"Sales Tax",
-				new BigDecimal("10"),
+				new BigDecimal(10),
 				new HashSet<TaxableCategory>(Arrays.asList(
 						TaxableCategory.BOOK,
 						TaxableCategory.FOOD,
@@ -81,9 +91,11 @@ public class CanadianTaxJurisdiction extends AbstractTaxJurisdiction {
 
 	private SalesTax salesTax;
 	/**
-	 * Getter here exclusively so this tax object can be used for unit testing
+	 * Get the sales tax object for Canada.
 	 * 
-	 * @return the Canadian sales tax
+	 * Getter here exclusively so this tax object can be used for unit testing.
+	 * 
+	 * @return The Canadian sales tax.
 	 */
 	public SalesTax getSalesTax() {
 		return salesTax;
@@ -91,16 +103,31 @@ public class CanadianTaxJurisdiction extends AbstractTaxJurisdiction {
 
 	private ImportSalesTax importSalesTax;
 	/**
-	 * Getter here exclusively so this tax object can be used for unit testing
+	 * Get the import duty object for Canada.
 	 * 
-	 * @return the Canadian import duty
+	 * Getter here exclusively so this tax object can be used for unit testing.
+	 * 
+	 * @return The Canadian import duty.
 	 */
 	public ImportSalesTax getImportSalesTax() {
 		return importSalesTax;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * This implementation will not allow this method to ever return null, will
+	 * always return {@link TaxableCategory#OTHER} if no category can be
+	 * determined for any reason.
+	 * 
+	 * @return {@inheritDoc} Never null for this implementation.
+	 * @throws IllegalArgumentException if sellableItem is null.
+	 */
 	@Override
 	public TaxableCategory getTaxableCategoryFor(SellableItem sellableItem) {
+		if (sellableItem == null) {
+			throw new IllegalArgumentException("sellableItem cannot be null");
+		}
 		//This is a complete hack for the purposes of this exercise
 		//In the real world the taxable category mappings would be retrieved
 		//from a data source

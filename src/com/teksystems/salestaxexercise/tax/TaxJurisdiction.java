@@ -38,7 +38,7 @@ public interface TaxJurisdiction {
 	public TaxableCategory getTaxableCategoryFor(SellableItem sellableItem);
 	
 	/**
-	 * The set of taxes which apply in this tax jurisdiction.
+	 * Get the set of taxes which apply in this tax jurisdiction.
 	 * 
 	 * Must not contain any duplicate taxes and must be maintained in a
 	 * particular order, as some taxes may be applied on top of other taxes prior to them on the list

@@ -126,9 +126,9 @@ public class TestHelpers {
 						Money.of(CurrencyUnit.CAD, 11.25)
 				);
 				
-			} //end Imports
+			} //end CanadianImportPrices
 
-		} //end Canada
+		} //end CanadianPrices
 		
 	} //end PricedGoods
 	
