@@ -8,9 +8,9 @@ import java.util.LinkedHashMap;
 
 /**
  * Basic interface for any collection of items with prices attached to them.
- * 
+ * <p>
  * TODO: should this interface extend Collection?
- * 
+ * </p>
  * @author Andrew
  *
  */

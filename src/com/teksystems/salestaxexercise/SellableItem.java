@@ -28,12 +28,12 @@ public interface SellableItem extends Sellable {
 	
 	/**
 	 * Get the region of origin for this item.
-	 * 
+	 * <p>
 	 * TODO: SOLID design principles would suggest this should probably be
 	 * split out in to a separate interface. I can foresee many future
 	 * implementations of sellable items for which the region of origin is not
 	 * needed.
-	 * 
+	 * </p>
 	 * @return The region in which this item was produced (or the service was performed).
 	 */
 	public Region getRegionOfOrigin();

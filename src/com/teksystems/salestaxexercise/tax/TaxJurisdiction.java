@@ -24,14 +24,14 @@ public interface TaxJurisdiction {
 	
 	/**
 	 * Get the tax category of a specific product or service in this jurisdiction.
-	 * 
+	 * <p>
 	 * TODO: SOLID design principles suggest maybe this shouldn't be here.
 	 * There may be tax jurisdictions where all taxes are universally applied
 	 * to all goods and services, meaning there is no need to keep track of
 	 * categories. So this method should be split out in to a separate
 	 * interface that extends this one, specifically for jurisdictions that
 	 * require categories.
-	 * 
+	 * </p>
 	 * @param sellableItem the item to be sold
 	 * @return The taxable category for this item in this jurisdiction.
 	 */

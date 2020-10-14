@@ -21,10 +21,11 @@ import com.teksystems.salestaxexercise.tax.TaxJurisdiction;
  * 
  * TODO: this class shouldn't really implement {@link Receiptable} itself, there should
  * be a separate View class for that.
- * 
+ * <p>
  * TODO: this class is still a work in progress, only the functionality vital to
- * producing the sample outputs for the exercise has been implemented.
- * 
+ * producing the sample outputs for the exercise has been implemented, and
+ * Javadoc still needs to be added.
+ * </p>
  * @author Andrew
  *
  */
@@ -213,7 +214,7 @@ public class TaxableBasketImpl implements TaxableBasket, Receiptable {
 
 	/**
 	 * This class shouldn't really implement this method itself,
-	 * there should be a separate class that implements Receiptable
+	 * there should be a separate view class that implements Receiptable.
 	 */
 	@Override
 	public void printReceipt() {

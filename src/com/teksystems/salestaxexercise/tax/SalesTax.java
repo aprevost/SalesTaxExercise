@@ -17,11 +17,11 @@ import com.teksystems.salestaxexercise.helpers.MoneyRoundingRule;
  * Generic implementation of a simple sales tax.
  * 
  * Should be able to be used for most simple sales taxes in most jurisdictions.
- * 
+ * <p>
  * TODO: the most basic sales tax would have no exempted categories. Remove the
  * exemptions from this class, and make a separate abstract class (and separate
  * interface) that adds exemptions to it.
- * 
+ * </p>
  * @author Andrew
  *
  */
@@ -29,15 +29,15 @@ public class SalesTax implements Tax {
 	
 	/**
 	 * Constructor for a generic sales tax.
-	 * 
+	 * <p>
 	 * TODO: should implement the Builder design pattern on this class to
 	 * simplify construction
-	 * 
+	 * </p><p>
 	 * The percentage parameter should represent the actual percent number for
 	 * this tax, NOT the multiplier corresponding to that percentage.
-	 * 
+	 * </p><p>
 	 * e.g. for a 10.5% sales tax, percentage should be 10.5, NOT the equivalent multiplier 0.105
-	 * 
+	 * </p>
 	 * @param taxJurisdiction the tax jurisdiction in which this tax applies, required
 	 * @param name the name of of this tax, required and must be non-empty
 	 * @param percentage the percentage for this sales tax (not divided by 100), required and must be non-zero
@@ -160,12 +160,12 @@ public class SalesTax implements Tax {
 	 * Multiplies by the tax percentage, applying this tax's
 	 * {@link #getRoundingMode()}, and then also applies its
 	 * {@link #getCustomRoundingRule()} if there is one.
-	 * 
+	 * <p>
 	 * TODO: when exemptions are moved out in to a separate class that extends
 	 * this one, it should be possible to make this method private. Extending
 	 * classes can just call the public {@link #getTaxAmountFor(SellableItem)}
 	 * method instead, will never need to call this method directly.
-	 * 
+	 * </p>
 	 * @param preTaxPrice the price before this tax is applied
 	 * @return The amount of tax for the input amount. Never null.
 	 */
@@ -185,10 +185,10 @@ public class SalesTax implements Tax {
 	
 	/**
 	 * Get the categories of taxable item that are exempt from this tax.
-	 * 
+	 * <p>
 	 * TODO: this should be moved out to a separate class that extends
 	 * this one.
-	 * 
+	 * </p>
 	 * @return The categories of taxable item that are exempt from this tax.
 	 */
 	public HashSet<TaxableCategory> getExemptedCategories() {
@@ -199,10 +199,10 @@ public class SalesTax implements Tax {
 	 * {@inheritDoc}
 	 * 
 	 * This implementation will not allow this method to ever return null.
-	 * 
+	 * <p>
 	 * TODO: the exempted categories logic here should be moved out to a
 	 * separate class that extends this one.
-	 * 
+	 * </p>
 	 * @return {@inheritDoc} Never null for this implementation.
 	 * 
 	 * @throws IllegalArgumentException if sellableItem or its price are null.
